@@ -86,6 +86,31 @@ doc_events = {
     "Cost Tier": {
         "before_save": "roqson_core.cost_tier.before_save",
     },
+    "Price Change Request": {
+        "after_save": "roqson_core.price_change_request.after_save",
+    },
+    "Inventory Entry": {
+        "after_insert": "roqson_core.inventory_entry.after_insert",
+    },
+    "Inventory Ledger": {
+        "before_insert":          "roqson_core.inventory_ledger.before_insert",
+        "after_insert":           "roqson_core.inventory_ledger.after_insert",
+        "on_update_after_submit": "roqson_core.inventory_ledger.on_update_after_submit",
+    },
+    "Sales": {
+        "before_save": "roqson_core.sales.before_save",
+        "after_save":  "roqson_core.sales.after_save",
+    },
+    "Customer Information": {
+        "before_save":            "roqson_core.customer_information.before_save",
+        "on_update_after_submit": "roqson_core.customer_information.on_update_after_submit",
+    },
+    "Credit Application": {
+        "before_save":            "roqson_core.credit_application.before_save",
+        "before_submit":          "roqson_core.credit_application.before_submit",
+        "after_save":             "roqson_core.credit_application.after_save",
+        "on_update_after_submit": "roqson_core.credit_application.on_update_after_submit",
+    },
 }
 
 # Permission query conditions — populated in Phase 6
