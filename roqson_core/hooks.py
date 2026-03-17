@@ -174,4 +174,7 @@ permission_query_conditions = {
 #     "daily":  ["roqson_core.tasks.auto_archive_expired_promos"],
 #     "hourly": ["roqson_core.tasks.notify_overheld_reservations"],
 # }
-scheduler_events = {}
+scheduler_events = {
+    "daily":  ["roqson_core.tasks.auto_archive_expired_promos"],
+    "hourly": ["roqson_core.tasks.notify_overheld_reservations"],
+}
