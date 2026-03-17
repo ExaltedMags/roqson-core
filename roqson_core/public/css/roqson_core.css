@@ -39,6 +39,9 @@ body::after {
 #page-List\/Order\ Form\/List .list-row-head {
     background: #fff4cf !important;
 }
+#page-List\/Order\ Form\/List .list-row-container .list-row:nth-child(odd) {
+    background: #e8fff1 !important;
+}
 
 /* Order Form UX Fix - Grid Mobile Fix */
 @media (max-width: 991px) {
