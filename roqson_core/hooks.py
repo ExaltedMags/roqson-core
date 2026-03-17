@@ -21,8 +21,29 @@ fixtures = [
         "dt": "Print Format",
         "filters": [["name", "in", ["Sales Billing Statement", "Billing Statement"]]]
     },
-    # Phase 8: DocType fixtures added here
-    # Phase 9: Workflow fixtures added here
+    {
+        "dt": "DocType",
+        "filters": [["name", "in", [
+            "Brands", "Classifications", "Credit Application", "Credit Application Request",
+            "Customer Information", "Customer Management", "Customer Survey Form",
+            "DSP Order Form", "Discounts", "Drivers", "Inventory", "Inventory Balance",
+            "Inventory Entry", "Inventory Ledger", "Nature of Business", "Order Form",
+            "PH Address", "PH Barangay", "PH City Municipality", "PH Province",
+            "Price Change Request", "Pricing Rules", "Product", "Product Bundles",
+            "Products Price list", "Promos", "Receipt", "Sales", "Sales Order Form",
+            "Sales Orders", "Sales Personnel", "Stock Transaction", "Territories",
+            "Trips", "Vehicles", "Warehouses",
+            "Applied Promos Table", "Bank Reference Table", "Business Representatives Table",
+            "Cost Tier", "Credit Application Supporting Document",
+            "Customer Information Outlet Address", "Inventory Entry Table",
+            "Inventory Ledger Table", "Order", "Order - VAT Table", "Order Details Table",
+            "Order History Summary", "Order Summary Table", "Order- Pricing Table",
+            "Partner and Incorporators Stockholders Table", "Receipt Apply To",
+            "Sales Items Table", "Supplier Reference Table", "Territory DSPs",
+            "Trip Ticket Failed Deliveries", "Trips Delivery Item",
+            "Trips Driver Assignment", "Trips Table",
+        ]]]
+    },
 ]
 
 # DocType event hooks — populated in Phase 5
