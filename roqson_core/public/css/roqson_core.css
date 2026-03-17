@@ -354,6 +354,14 @@ body::after {
 }
 #order-date-filter-btn {
     margin-right: 8px;
+    background: #ff0033 !important;
+    color: #fff !important;
+    border: 4px solid #ffef00 !important;
+    font-size: 28px !important;
+    font-weight: 800 !important;
+    padding: 14px 22px !important;
+    box-shadow: 0 0 0 6px rgba(0, 255, 255, 0.55) !important;
+    transform: rotate(-1deg);
 }
 #order-date-popover {
     display: none;
