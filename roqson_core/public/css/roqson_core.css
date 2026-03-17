@@ -13,6 +13,33 @@ body::after {
 
 /* === Order Form === */
 
+/* Order Form list view deploy test beacon */
+#page-List\/Order\ Form\/List .layout-main-section {
+    border: 6px solid #ff5a36 !important;
+    border-radius: 18px !important;
+    box-shadow: 0 0 0 6px rgba(255, 196, 0, 0.45) !important;
+}
+#page-List\/Order\ Form\/List .layout-main-section::before {
+    content: "ROQSON CSS TEST ACTIVE";
+    display: block;
+    margin: 0 0 14px;
+    padding: 14px 18px;
+    background: repeating-linear-gradient(
+        135deg,
+        #ff5a36 0 16px,
+        #ffc400 16px 32px
+    );
+    color: #1f1300;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-align: center;
+    border-radius: 12px;
+}
+#page-List\/Order\ Form\/List .list-row-head {
+    background: #fff4cf !important;
+}
+
 /* Order Form UX Fix - Grid Mobile Fix */
 @media (max-width: 991px) {
     .form-grid .grid-body, .form-grid .grid-heading-row {
@@ -224,13 +251,1103 @@ body::after {
     font-weight: bold;
     font-size: 14px;
 }
+.roqson-stock-alert-status-in {
+    color: var(--green-600);
+}
+.roqson-stock-alert-status-out {
+    color: var(--red-600);
+}
+.roqson-stock-alert-close-hider {
+    display: none;
+}
+
+/* Order Form - List View badges and date filter */
+.of-state-badge-cell {
+    display: flex !important;
+    align-items: center !important;
+}
+.of-state-badge-pill {
+    border-radius: 9999px;
+    padding: 2px 6px;
+    font-size: 12px;
+    font-weight: 500;
+    white-space: nowrap;
+    border: 1px solid transparent;
+}
+.of-state-badge-draft {
+    background-color: #FEFCE8;
+    color: #854D0E;
+    border-color: rgba(133, 77, 14, 0.15);
+}
+.of-state-badge-needs-review {
+    background-color: #FFF7ED;
+    color: #C2410C;
+    border-color: rgba(194, 65, 12, 0.15);
+}
+.of-state-badge-approved {
+    background-color: #F0FDF4;
+    color: #065F46;
+    border-color: rgba(6, 95, 70, 0.15);
+}
+.of-state-badge-reserved {
+    background-color: #F0F9FF;
+    color: #0C4A6E;
+    border-color: rgba(12, 74, 110, 0.15);
+}
+.of-state-badge-dispatched {
+    background-color: #F0FDFA;
+    color: #134E4A;
+    border-color: rgba(19, 78, 74, 0.15);
+}
+.of-state-badge-delivered {
+    background-color: #F0FDF4;
+    color: #14532D;
+    border-color: rgba(20, 83, 45, 0.15);
+}
+.of-state-badge-rejected {
+    background-color: #FFF1F2;
+    color: #9F1239;
+    border-color: rgba(159, 18, 57, 0.15);
+}
+.of-state-badge-delivery-failed {
+    background-color: #FEF2F2;
+    color: #7F1D1D;
+    border-color: rgba(127, 29, 29, 0.15);
+}
+.of-state-badge-redeliver {
+    background-color: #F5F3FF;
+    color: #4C1D95;
+    border-color: rgba(76, 29, 149, 0.15);
+}
+.of-state-badge-canceled {
+    background-color: #FFF0F6;
+    color: #831843;
+    border-color: rgba(131, 24, 67, 0.15);
+}
+.of-state-badge-paid {
+    background-color: #F0FDF4;
+    color: #14532D;
+    border-color: rgba(20, 83, 45, 0.15);
+}
+.of-state-badge-unpaid {
+    background-color: #FEF2F2;
+    color: #7F1D1D;
+    border-color: rgba(127, 29, 29, 0.15);
+}
+.of-delivery-status {
+    font-weight: 600;
+}
+.of-delivery-status-on-track {
+    color: #2e7d32;
+}
+.of-delivery-status-due-soon {
+    color: #f9a825;
+}
+.of-delivery-status-overdue {
+    color: #ef6c00;
+}
+.of-delivery-status-overheld {
+    color: #c62828;
+}
+#order-date-filter-btn {
+    margin-right: 8px;
+}
+#order-date-popover {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    background: white;
+    border: 1px solid #d1d8dd;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    padding: 14px 16px;
+    width: 420px;
+}
+.order-date-popover-section {
+    margin-bottom: 12px;
+}
+.order-date-popover-section-tight {
+    margin-bottom: 10px;
+}
+.order-date-popover-label {
+    font-size: 11px;
+    color: #8d99a6;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: block;
+    margin-bottom: 4px;
+}
+.order-date-quick-select-label {
+    margin-bottom: 6px;
+}
+#order-date-field-toggle {
+    width: 100%;
+    border: 1px solid #d1d8dd;
+    border-radius: 5px;
+    padding: 5px 28px 5px 10px;
+    font-size: 13px;
+    cursor: pointer;
+    background-color: white;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'><path fill='%238d99a6' d='M6 8L1 3h10z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    -webkit-appearance: none;
+    appearance: none;
+    color: #36414c;
+    height: 36px;
+    box-sizing: border-box;
+}
+.order-date-range-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+#order-from-date,
+#order-to-date {
+    flex: 1;
+    border: 1px solid #d1d8dd;
+    border-radius: 5px;
+    padding: 0 8px;
+    font-size: 12px;
+    cursor: pointer;
+    background: white;
+    color: #36414c;
+    height: 30px;
+    box-sizing: border-box;
+    min-width: 0;
+}
+.order-date-arrow {
+    color: #8d99a6;
+    font-size: 12px;
+    flex-shrink: 0;
+}
+.order-date-quick-select {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 5px;
+    align-items: stretch;
+}
+.order-preset-btn {
+    flex: 1;
+    white-space: nowrap;
+    font-size: 13px;
+    padding: 6px 0;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    font-weight: normal;
+}
+.order-preset-btn.order-preset-btn-active {
+    font-weight: bold;
+}
+.order-date-actions {
+    text-align: right;
+}
+#order-filter-clear {
+    border: 1px solid #ff5858;
+    color: #ff5858;
+    background: white;
+    display: none;
+    padding: 3px 10px;
+}
+
+/* Order Form UX Fix - Proof of Visit gallery */
+.roqson-pov-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 10px;
+}
+.roqson-pov-card {
+    position: relative;
+    aspect-ratio: 1;
+    border: 1px solid var(--border-color, #ddd);
+    border-radius: var(--border-radius-md, 8px);
+    overflow: hidden;
+    background: var(--control-bg, #f3f3f3);
+    box-shadow: var(--shadow-xs, 0 1px 2px rgba(0, 0, 0, 0.05));
+}
+.roqson-pov-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+.roqson-pov-image:hover {
+    transform: scale(1.05);
+}
+.roqson-pov-delete {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    font-size: 16px;
+    line-height: 1;
+    z-index: 10;
+}
+.roqson-pov-preview {
+    text-align: center;
+    background: var(--control-bg, #f3f3f3);
+    border-radius: var(--border-radius-md, 8px);
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+}
+.roqson-pov-preview-image {
+    max-width: 100%;
+    max-height: 75vh;
+    object-fit: contain;
+    border-radius: var(--border-radius-sm, 4px);
+}
+
+/* Notes Acknowledgment */
+.roqson-notes-empty {
+    padding: 12px 0;
+    font-size: 13px;
+}
+.roqson-notes-preview {
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    padding: 16px;
+    margin-bottom: 12px;
+}
+.roqson-notes-preview-title {
+    margin: 0 0 10px;
+    font-weight: 600;
+}
+.roqson-notes-preview-body {
+    font-size: 13px;
+    line-height: 1.6;
+}
+.roqson-notes-card {
+    background: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 16px;
+    margin-top: 8px;
+}
+.roqson-notes-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+.roqson-notes-card-title {
+    margin: 0;
+    font-weight: 600;
+}
+.roqson-notes-status {
+    font-weight: 600;
+}
+.roqson-notes-status-complete {
+    color: #28a745;
+}
+.roqson-notes-status-required {
+    color: #dc3545;
+}
+.roqson-notes-status-preview {
+    color: #6c757d;
+}
+.roqson-notes-progress {
+    width: 100%;
+    height: 6px;
+    margin-bottom: 14px;
+}
+.roqson-notes-progress::-webkit-progress-bar {
+    background: #e9ecef;
+    border-radius: 4px;
+}
+.roqson-notes-progress::-webkit-progress-value {
+    border-radius: 4px;
+}
+.roqson-notes-progress::-moz-progress-bar {
+    border-radius: 4px;
+}
+.roqson-notes-progress.progress-complete::-webkit-progress-value,
+.roqson-notes-progress.progress-complete::-moz-progress-bar {
+    background: #28a745;
+}
+.roqson-notes-progress.progress-partial::-webkit-progress-value,
+.roqson-notes-progress.progress-partial::-moz-progress-bar {
+    background: #fd7e14;
+}
+.roqson-notes-progress.progress-empty::-webkit-progress-value,
+.roqson-notes-progress.progress-empty::-moz-progress-bar {
+    background: #dc3545;
+}
+.notes-ack-item {
+    display: flex;
+    align-items: flex-start;
+    padding: 10px 12px;
+    margin-bottom: 6px;
+    border-radius: 6px;
+    cursor: pointer;
+    border: 1px solid transparent;
+}
+.notes-ack-item.notes-ack-item-acked {
+    background: #f0fff4;
+    border-color: #b7ebc8;
+}
+.notes-ack-item.notes-ack-item-pending {
+    background: #fff8f8;
+    border-color: #f5c6cb;
+}
+.roqson-notes-checkbox-wrap {
+    flex-shrink: 0;
+    margin-right: 10px;
+    margin-top: 2px;
+}
+.notes-ack-checkbox {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+.roqson-notes-item-text {
+    flex: 1;
+    font-size: 13px;
+    line-height: 1.5;
+}
+.roqson-notes-item-text.is-acked {
+    text-decoration: line-through;
+    color: #6c757d;
+}
+.roqson-notes-ack-detail {
+    color: #6c757d;
+    margin-left: 8px;
+}
 
 /* === Sales === */
 
+/* Sales - Totals Footer Rows */
+.roqson-footer-row.sales-totals-row,
+.roqson-footer-row-header.sales-totals-row,
+.roqson-footer-row-total.sales-totals-row {
+    display: flex;
+}
+
+/* Sales List Script - version-sensitive Frappe list selectors */
+#page-List\/Sales\/List .list-row-activity .comment-count,
+#page-List\/Sales\/List .list-row-activity .mx-2,
+#page-List\/Sales\/List .list-row-activity .list-row-like {
+    display: none !important;
+}
+#page-List\/Sales\/List .list-header-meta .list-liked-by-me,
+#page-List\/Sales\/List .tag-col {
+    display: none !important;
+}
+
+#page-List\/Sales\/List .list-subject {
+    flex: 0 0 200px !important;
+    min-width: 200px !important;
+    max-width: 200px !important;
+    overflow: hidden !important;
+    display: flex !important;
+    align-items: center !important;
+}
+#page-List\/Sales\/List .list-header-subject .list-header-meta {
+    display: none !important;
+}
+
+#page-List\/Sales\/List .list-row-head .level-left,
+#page-List\/Sales\/List .list-row-container .list-row .level-left {
+    flex: 0 0 auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    overflow: visible !important;
+}
+#page-List\/Sales\/List .list-row-head .level-right,
+#page-List\/Sales\/List .list-row-container .list-row .level-right {
+    flex: 0 0 0 !important;
+    min-width: 0 !important;
+    max-width: 0 !important;
+    overflow: hidden !important;
+    display: none !important;
+}
+
+#page-List\/Sales\/List .list-row-col {
+    margin-right: 0 !important;
+}
+
+#page-List\/Sales\/List .list-row-head,
+#page-List\/Sales\/List .list-row-container .list-row {
+    min-width: 1630px !important;
+    flex-wrap: nowrap !important;
+    display: flex !important;
+}
+
+#page-List\/Sales\/List .layout-main-section,
+#page-List\/Sales\/List .frappe-list,
+#page-List\/Sales\/List .layout-main-section-wrapper {
+    overflow: visible !important;
+}
+#page-List\/Sales\/List .result {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+}
+
+#page-List\/Sales\/List .list-row-col.hidden-xs,
+#page-List\/Sales\/List .list-row-col.hidden-sm,
+#page-List\/Sales\/List .list-row-col.hidden-md,
+#page-List\/Sales\/List .list-row-head .list-row-col.hidden-xs,
+#page-List\/Sales\/List .list-row-head .list-row-col.hidden-sm,
+#page-List\/Sales\/List .list-row-head .list-row-col.hidden-md {
+    display: flex !important;
+}
+
+.roqson-sales-list-col {
+    padding-left: 8px;
+    padding-right: 8px;
+    box-sizing: border-box;
+    white-space: nowrap;
+    overflow: hidden;
+    flex: 0 0 auto !important;
+}
+.sl-col-id {
+    flex-basis: 160px !important;
+    min-width: 160px !important;
+    max-width: 160px !important;
+    font-weight: 700;
+}
+.sl-col-status {
+    flex-basis: 110px !important;
+    min-width: 110px !important;
+    max-width: 110px !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+}
+.sl-col-ftype {
+    flex-basis: 0 !important;
+    min-width: 0 !important;
+    max-width: 0 !important;
+}
+.sl-col-ref {
+    flex-basis: 150px !important;
+    min-width: 150px !important;
+    max-width: 150px !important;
+}
+.sl-col-customer {
+    flex-basis: 300px !important;
+    min-width: 300px !important;
+    max-width: 300px !important;
+}
+.sl-col-address {
+    flex-basis: 400px !important;
+    min-width: 400px !important;
+    max-width: 400px !important;
+}
+.sl-col-total {
+    flex-basis: 140px !important;
+    min-width: 140px !important;
+    max-width: 140px !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: flex-end;
+}
+.sl-col-date {
+    flex-basis: 130px !important;
+    min-width: 130px !important;
+    max-width: 130px !important;
+}
+.roqson-sales-list-hidden {
+    display: none !important;
+}
+.roqson-sales-status-badge {
+    border-radius: 9999px;
+    padding: 2px 10px;
+    font-size: 11px;
+    font-weight: 600;
+    white-space: nowrap;
+    display: inline-block;
+    line-height: 1.4;
+    border: 1px solid transparent;
+}
+.roqson-sales-status-pending {
+    background-color: #fefce8;
+    color: #854d0e;
+    border-color: rgba(133, 77, 14, 0.15);
+}
+.roqson-sales-status-dispatching {
+    background-color: #f0fdfa;
+    color: #134e4a;
+    border-color: rgba(19, 78, 74, 0.15);
+}
+.roqson-sales-status-in-transit,
+.roqson-sales-status-for-pickup {
+    background-color: #eff6ff;
+    color: #1e40af;
+    border-color: rgba(30, 64, 175, 0.15);
+}
+.roqson-sales-status-received {
+    background-color: #f0fdf4;
+    color: #166534;
+    border-color: rgba(22, 101, 52, 0.15);
+}
+.roqson-sales-status-failed {
+    background-color: #fef2f2;
+    color: #991b1b;
+    border-color: rgba(153, 27, 27, 0.15);
+}
+.roqson-sales-status-completed {
+    background-color: #ecfdf5;
+    color: #065f46;
+    border-color: rgba(6, 95, 70, 0.15);
+}
+.roqson-sales-status-cancelled {
+    background-color: #fff1f2;
+    color: #9f1239;
+    border-color: rgba(159, 18, 57, 0.15);
+}
+.roqson-sales-fulfillment-type {
+    font-weight: 600;
+    color: #555;
+}
+.row-locked {
+    opacity: 0.5;
+    background-color: #f9f9f9 !important;
+    pointer-events: none;
+}
+.roqson-sales-selection-hint {
+    display: none;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #fcf8e3;
+    border: 1px solid #faebcc;
+    color: #8a6d3b;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+/* Sales Pick-up Confirmation */
+.roqson-sales-btn-ready {
+    color: #fff !important;
+    background-color: #2563eb !important;
+    border-color: #2563eb !important;
+}
+.roqson-sales-btn-confirm {
+    color: #fff !important;
+    background-color: #166534 !important;
+    border-color: #166534 !important;
+}
+
+/* Sales - Receipts Section */
+.roqson-sales-receipts-loading,
+.roqson-sales-receipts-empty,
+.roqson-sales-receipts-error {
+    padding: 8px 0;
+    font-size: 12px;
+}
+.roqson-sales-receipts-loading,
+.roqson-sales-receipts-error {
+    color: #9ca3af;
+}
+.roqson-sales-receipts-empty,
+.roqson-sales-receipts-error {
+    font-style: italic;
+}
+.roqson-sales-receipts-empty {
+    color: #6b7280;
+}
+.roqson-sales-receipts-table {
+    font-size: 12px;
+    margin-bottom: 0;
+}
+
 /* === Trips === */
+
+.roqson-hidden {
+    display: none !important;
+}
+
+/* Trips List Script - version-sensitive Frappe list selectors */
+#page-List\/Trips\/List .list-subject {
+    flex: 0 0 340px !important;
+    min-width: 340px !important;
+    max-width: 340px !important;
+    overflow: hidden !important;
+    display: flex !important;
+    align-items: center !important;
+}
+#page-List\/Trips\/List .list-header-subject .list-header-meta {
+    display: none !important;
+}
+
+#page-List\/Trips\/List .list-row-head .level-left,
+#page-List\/Trips\/List .list-row-container .list-row .level-left {
+    flex: 0 0 auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    overflow: visible !important;
+}
+#page-List\/Trips\/List .list-row-head .level-right,
+#page-List\/Trips\/List .list-row-container .list-row .level-right {
+    flex: 0 0 0 !important;
+    min-width: 0 !important;
+    max-width: 0 !important;
+    overflow: hidden !important;
+    display: none !important;
+}
+
+#page-List\/Trips\/List .list-row-col,
+#page-List\/Trips\/List .tag-col {
+    margin-right: 0 !important;
+}
+#page-List\/Trips\/List .tag-col {
+    display: none !important;
+}
+
+#page-List\/Trips\/List .list-row-head,
+#page-List\/Trips\/List .list-row-container .list-row {
+    min-width: 1740px !important;
+    flex-wrap: nowrap !important;
+    display: flex !important;
+}
+
+#page-List\/Trips\/List .layout-main-section,
+#page-List\/Trips\/List .frappe-list,
+#page-List\/Trips\/List .layout-main-section-wrapper {
+    overflow: visible !important;
+}
+#page-List\/Trips\/List .result {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+}
+
+#page-List\/Trips\/List .list-row-col.hidden-xs,
+#page-List\/Trips\/List .list-row-col.hidden-sm,
+#page-List\/Trips\/List .list-row-col.hidden-md,
+#page-List\/Trips\/List .list-row-head .list-row-col.hidden-xs,
+#page-List\/Trips\/List .list-row-head .list-row-col.hidden-sm,
+#page-List\/Trips\/List .list-row-head .list-row-col.hidden-md {
+    display: flex !important;
+}
+
+.roqson-trips-list-col {
+    padding-left: 8px;
+    padding-right: 8px;
+    box-sizing: border-box;
+    white-space: nowrap;
+    overflow: hidden;
+    flex: 0 0 auto !important;
+}
+.tt-col-status {
+    flex-basis: 110px !important;
+    min-width: 110px !important;
+    max-width: 110px !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+}
+.tt-col-drivers {
+    flex-basis: 200px !important;
+    min-width: 200px !important;
+    max-width: 200px !important;
+}
+.tt-col-items {
+    flex-basis: 130px !important;
+    min-width: 130px !important;
+    max-width: 130px !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: flex-end;
+}
+.tt-col-liters {
+    flex-basis: 110px !important;
+    min-width: 110px !important;
+    max-width: 110px !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: flex-end;
+}
+.tt-col-barangay {
+    flex-basis: 200px !important;
+    min-width: 200px !important;
+    max-width: 200px !important;
+}
+.tt-col-outlet {
+    flex-basis: 220px !important;
+    min-width: 220px !important;
+    max-width: 220px !important;
+}
+.tt-col-vehicle {
+    flex-basis: 120px !important;
+    min-width: 120px !important;
+    max-width: 120px !important;
+}
+.roqson-trips-list-hidden {
+    display: none !important;
+}
+
+.tt-area-summary {
+    display: none;
+    margin: 12px 0 4px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #f4f0e8, #e7efe7);
+    border: 1px solid #d8dfd1;
+}
+.tt-area-summary-title {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #617061;
+}
+.tt-area-summary-stats {
+    display: flex;
+    gap: 18px;
+    margin-top: 6px;
+    font-size: 14px;
+}
+
+/* Trips - Order Preview */
+.tt-items-table-wrap {
+    border: 1px solid #eee;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.tt-items-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.tt-items-table thead tr {
+    background: #fafafa;
+}
+.tt-items-cell,
+.tt-items-head {
+    padding: 8px;
+    text-align: left;
+}
+.tt-items-cell {
+    padding: 6px 8px;
+    border-top: 1px solid #eee;
+}
+.tt-items-head-num {
+    width: 48px;
+}
+.tt-items-head-qty,
+.tt-items-cell-qty {
+    text-align: right;
+    width: 90px;
+}
+.tt-promos {
+    margin-top: 10px;
+}
+.tt-promos-title {
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+.tt-promos-body {
+    white-space: pre-wrap;
+}
+.tt-order-actions {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+/* Trips - Offending Items */
+.tt-inline-empty-message {
+    padding: 8px 0;
+}
+.tt-inline-empty-message-sm {
+    padding: 4px 0;
+}
+.tt-offending-container {
+    margin: 4px 0 12px;
+}
+.tt-offending-label {
+    margin-bottom: 8px;
+    display: block;
+    font-weight: 600;
+}
+.tt-offending-badge {
+    margin-left: 8px;
+    background: #e74c3c;
+    color: #fff;
+    border-radius: 10px;
+    padding: 2px 8px;
+    font-size: 11px;
+}
+.tt-offending-order {
+    border: 1px solid #e8e8e8;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    overflow: hidden;
+}
+.tt-offending-order-header {
+    padding: 10px 12px;
+    background: #fafafa;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    user-select: none;
+}
+.tt-offending-order-name {
+    font-weight: 500;
+}
+.tt-offending-chevron {
+    transition: transform 0.2s;
+    font-size: 12px;
+}
+.tt-offending-chevron.is-open {
+    transform: rotate(90deg);
+}
+.tt-offending-order-body {
+    display: none;
+    padding: 8px 12px;
+}
+.tt-offending-item-label {
+    display: flex;
+    align-items: center;
+    padding: 5px 0;
+    cursor: pointer;
+    gap: 8px;
+    margin: 0;
+}
+.tt-offending-item-checkbox {
+    margin: 0;
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+}
+.tt-offending-summary {
+    margin-top: 10px;
+    padding: 10px 12px;
+    background: #fff8f8;
+    border: 1px solid #f5c6cb;
+    border-radius: 6px;
+}
+.tt-offending-summary-title {
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #721c24;
+    font-size: 12px;
+}
+.tt-offending-summary-row {
+    margin-bottom: 4px;
+}
+.tt-offending-summary-order {
+    font-weight: 500;
+    font-size: 12px;
+}
+.tt-offending-summary-items,
+.tt-offending-summary-flat {
+    font-size: 12px;
+}
+
+/* Trips - Multi-driver Buttons */
+.roqson-trip-btn-apply-driver-all {
+    margin: 4px 0 4px 8px;
+}
+.roqson-trip-btn-split-delivery-row {
+    margin-top: 10px;
+}
 
 /* === Customer Survey Form === */
 
+.roqson-csf-muted-message {
+    padding: 12px;
+    color: #777;
+}
+.roqson-csf-last-order-card {
+    padding: 14px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    background: #fafafa;
+    line-height: 1.6;
+}
+.roqson-csf-last-order-title {
+    font-weight: 600;
+    font-size: 15px;
+}
+.roqson-csf-last-order-divider {
+    margin: 8px 0;
+    border-top: 1px solid #ddd;
+}
+.roqson-csf-last-order-meta {
+    margin-top: 10px;
+    font-size: 12px;
+    color: #6c757d;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.roqson-csf-last-order-icon {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #e9ecef;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.roqson-csf-photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 10px;
+}
+.roqson-csf-photo-card {
+    position: relative;
+    aspect-ratio: 1;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.roqson-csf-photo-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    cursor: pointer;
+}
+.roqson-csf-photo-delete {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: red;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+.roqson-csf-photo-preview {
+    width: 100%;
+}
+
+.notes-badge {
+    width: 8px;
+    height: 8px;
+    background: red;
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 6px;
+}
+
 /* === Customer Information === */
 
+.add-delivery-address-btn,
+.add-business-rep-btn {
+    margin-top: 8px;
+}
+
+.roqson-ci-order-history-filters {
+    margin-bottom: 12px;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+.roqson-ci-order-status {
+    width: 160px;
+}
+.roqson-ci-product-filter {
+    width: 260px;
+}
+.roqson-ci-order-history-message {
+    color: #888;
+}
+.order-history-table {
+    width: 100%;
+    table-layout: fixed;
+}
+.order-history-table th,
+.order-history-table td {
+    vertical-align: top;
+    padding: 8px 10px;
+    white-space: normal;
+    word-wrap: break-word;
+}
+.order-history-table .col-order {
+    width: 140px;
+    white-space: nowrap;
+}
+.order-history-table .col-date {
+    width: 110px;
+    white-space: nowrap;
+}
+.order-history-table .col-items {
+    width: auto;
+}
+.order-history-table .col-qty {
+    width: 100px;
+    text-align: center;
+    white-space: nowrap;
+}
+.order-history-table .col-status {
+    width: 120px;
+    white-space: nowrap;
+}
+.order-history-table tbody tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+.order-history-table tbody tr:hover {
+    background-color: #eef2f6;
+}
+.roqson-ci-order-history-pagination {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 12px;
+}
+
 /* === Inventory Ledger === */
+
+/* Movement Type Accessibility */
+.roqson-il-movement-type-locked {
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+/* Inventory Ledger Audit Trail */
+.roqson-il-empty-history {
+    color: #888;
+}
+.stock-movement-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    table-layout: fixed;
+}
+.stock-movement-table th,
+.stock-movement-table td {
+    border: 1px solid #eee;
+    padding: 8px 10px;
+    white-space: normal;
+    word-wrap: break-word;
+}
+.stock-movement-table tbody tr:nth-child(even) {
+    background: #f8f9fa;
+}
+.stock-movement-table tbody tr:hover {
+    background: #eef2f6;
+}
+
+/* === Other / Admin-facing === */
+
+/* Price Change Request popup */
+.roqson-pcr-popup {
+    font-size: 14px;
+}
+.roqson-pcr-popup-alert,
+.roqson-pcr-price-highlight {
+    color: red;
+    font-weight: 700;
+}
+.roqson-pcr-popup-alert {
+    margin-bottom: 12px;
+}

@@ -1,5 +1,5 @@
 app_name = "roqson_core"
-app_title = "Roqson Core"
+app_title = "ROQSON CORE CSS TEST"
 app_publisher = "ROQSON"
 app_description = "ROQSON Industrial Sales core customizations"
 app_version = "0.0.1"
