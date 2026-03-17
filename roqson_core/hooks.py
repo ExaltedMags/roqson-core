@@ -149,7 +149,23 @@ doc_events = {
 #     "Brands":               "roqson_core.permissions.get_brands_conditions",
 #     "Sales Personnel":      "roqson_core.permissions.get_sales_personnel_conditions",
 # }
-permission_query_conditions = {}
+permission_query_conditions = {
+    "Order Form":           "roqson_core.permissions.get_order_form_conditions",
+    "Trips":                "roqson_core.permissions.get_trips_conditions",
+    "Sales":                "roqson_core.permissions.get_sales_conditions",
+    "Credit Application":   "roqson_core.permissions.get_credit_application_conditions",
+    "Customer Survey Form": "roqson_core.permissions.get_customer_survey_form_conditions",
+    "Customer Information": "roqson_core.permissions.get_customer_information_conditions",
+    "Product":              "roqson_core.permissions.get_product_conditions",
+    "Nature of Business":   "roqson_core.permissions.get_nature_of_business_conditions",
+    "Promos":               "roqson_core.permissions.get_promos_conditions",
+    "Discounts":            "roqson_core.permissions.get_discounts_conditions",
+    "Territories":          "roqson_core.permissions.get_territories_conditions",
+    "Vehicles":             "roqson_core.permissions.get_vehicles_conditions",
+    "Warehouses":           "roqson_core.permissions.get_warehouses_conditions",
+    "Brands":               "roqson_core.permissions.get_brands_conditions",
+    "Sales Personnel":      "roqson_core.permissions.get_sales_personnel_conditions",
+}
 
 # Scheduler tasks — populated in Phase 7
 # Target state:
