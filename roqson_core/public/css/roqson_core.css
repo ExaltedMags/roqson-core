@@ -14,12 +14,12 @@ body::after {
 /* === Order Form === */
 
 /* Order Form list view deploy test beacon */
-#page-List\/Order\ Form\/List .layout-main-section {
+.page-container[data-page-route="List/Order Form/List"] .layout-main-section {
     border: 6px solid #ff5a36 !important;
     border-radius: 18px !important;
     box-shadow: 0 0 0 6px rgba(255, 196, 0, 0.45) !important;
 }
-#page-List\/Order\ Form\/List .layout-main-section::before {
+.page-container[data-page-route="List/Order Form/List"] .layout-main-section::before {
     content: "ROQSON CSS TEST ACTIVE";
     display: block;
     margin: 0 0 14px;
@@ -36,10 +36,10 @@ body::after {
     text-align: center;
     border-radius: 12px;
 }
-#page-List\/Order\ Form\/List .list-row-head {
+.page-container[data-page-route="List/Order Form/List"] .list-row-head {
     background: #fff4cf !important;
 }
-#page-List\/Order\ Form\/List .list-row-container .list-row:nth-child(odd) {
+.page-container[data-page-route="List/Order Form/List"] .list-row-container .list-row:nth-child(odd) {
     background: #e8fff1 !important;
 }
 
