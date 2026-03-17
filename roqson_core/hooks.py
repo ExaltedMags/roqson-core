@@ -83,6 +83,9 @@ doc_events = {
         "before_cancel": "roqson_core.receipt.before_cancel",
         "on_submit":     "roqson_core.receipt.on_submit",
     },
+    "Cost Tier": {
+        "before_save": "roqson_core.cost_tier.before_save",
+    },
 }
 
 # Permission query conditions — populated in Phase 6
