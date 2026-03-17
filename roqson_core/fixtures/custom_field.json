@@ -28,7 +28,8 @@
     "precision": "",
     "columns": 0,
     "idx": 5,
-    "modified": "2026-03-17 12:00:00.000000"
+    "modified": "2026-03-17 12:00:00.000000",
+    "doctype": "Custom Field"
   },
   {
     "name": "Vehicles-capacity_liters",
@@ -58,7 +59,8 @@
     "precision": "",
     "columns": 0,
     "idx": 4,
-    "modified": "2026-03-17 12:00:00.000000"
+    "modified": "2026-03-17 12:00:00.000000",
+    "doctype": "Custom Field"
   },
   {
     "name": "Vehicles-capacity_qty",
@@ -88,7 +90,8 @@
     "precision": "",
     "columns": 0,
     "idx": 3,
-    "modified": "2026-03-17 12:00:00.000000"
+    "modified": "2026-03-17 12:00:00.000000",
+    "doctype": "Custom Field"
   },
   {
     "name": "Trip Ticket-assigned_drivers_display",
@@ -118,7 +121,8 @@
     "precision": "",
     "columns": 0,
     "idx": 13,
-    "modified": "2026-03-17 12:00:00.000000"
+    "modified": "2026-03-17 12:00:00.000000",
+    "doctype": "Custom Field"
   },
   {
     "name": "Trip Ticket-sales_numbers_display",
@@ -148,7 +152,8 @@
     "precision": "",
     "columns": 0,
     "idx": 12,
-    "modified": "2026-03-17 12:00:00.000000"
+    "modified": "2026-03-17 12:00:00.000000",
+    "doctype": "Custom Field"
   },
   {
     "name": "Trip Ticket-area_barangay",
@@ -179,7 +184,8 @@
     "precision": "",
     "columns": 0,
     "idx": 16,
-    "modified": "2026-03-17 12:00:00.000000"
+    "modified": "2026-03-17 12:00:00.000000",
+    "doctype": "Custom Field"
   },
   {
     "name": "Trip Ticket-total_liters",
@@ -209,7 +215,8 @@
     "precision": "",
     "columns": 0,
     "idx": 15,
-    "modified": "2026-03-17 12:00:00.000000"
+    "modified": "2026-03-17 12:00:00.000000",
+    "doctype": "Custom Field"
   },
   {
     "name": "Trip Ticket-total_item_qty",
@@ -239,7 +246,8 @@
     "precision": "",
     "columns": 0,
     "idx": 14,
-    "modified": "2026-03-17 12:00:00.000000"
+    "modified": "2026-03-17 12:00:00.000000",
+    "doctype": "Custom Field"
   },
   {
     "name": "Vehicles-custom_road_constraint",
@@ -270,7 +278,8 @@
     "precision": "",
     "columns": 0,
     "idx": 4,
-    "modified": "2026-03-17 12:00:00.000000"
+    "modified": "2026-03-17 12:00:00.000000",
+    "doctype": "Custom Field"
   },
   {
     "name": "Vehicles-custom_capacity_liters",
@@ -300,7 +309,8 @@
     "precision": "",
     "columns": 0,
     "idx": 3,
-    "modified": "2026-03-17 12:00:00.000000"
+    "modified": "2026-03-17 12:00:00.000000",
+    "doctype": "Custom Field"
   },
   {
     "name": "Sales-trip_ticket",
@@ -331,7 +341,8 @@
     "precision": "",
     "columns": 0,
     "idx": 8,
-    "modified": "2026-03-17 12:00:00.000000"
+    "modified": "2026-03-17 12:00:00.000000",
+    "doctype": "Custom Field"
   },
   {
     "name": "Trip Ticket-all_drivers_completed",
@@ -361,7 +372,8 @@
     "precision": "",
     "columns": 0,
     "idx": 18,
-    "modified": "2026-03-17 12:00:00.000000"
+    "modified": "2026-03-17 12:00:00.000000",
+    "doctype": "Custom Field"
   },
   {
     "name": "Trip Ticket-area_zip_code",
@@ -391,7 +403,8 @@
     "precision": "",
     "columns": 0,
     "idx": 17,
-    "modified": "2026-03-17 12:00:00.000000"
+    "modified": "2026-03-17 12:00:00.000000",
+    "doctype": "Custom Field"
   },
   {
     "name": "Trip Ticket-driver_assignments",
@@ -422,7 +435,8 @@
     "precision": "",
     "columns": 0,
     "idx": 16,
-    "modified": "2026-03-17 12:00:00.000000"
+    "modified": "2026-03-17 12:00:00.000000",
+    "doctype": "Custom Field"
   },
   {
     "name": "Trip Ticket-delivery_items",
@@ -453,7 +467,8 @@
     "precision": "",
     "columns": 0,
     "idx": 17,
-    "modified": "2026-03-17 12:00:00.000000"
+    "modified": "2026-03-17 12:00:00.000000",
+    "doctype": "Custom Field"
   },
   {
     "name": "Order Form-sales_ref",
@@ -484,7 +499,8 @@
     "precision": "",
     "columns": 0,
     "idx": 34,
-    "modified": "2026-03-17 12:00:00.000000"
+    "modified": "2026-03-17 12:00:00.000000",
+    "doctype": "Custom Field"
   },
   {
     "name": "Order Form-proof_of_visit_gallery",
@@ -514,7 +530,8 @@
     "precision": "",
     "columns": 0,
     "idx": 65,
-    "modified": "2026-03-17 12:00:00.000000"
+    "modified": "2026-03-17 12:00:00.000000",
+    "doctype": "Custom Field"
   },
   {
     "name": "Promos-valid_until",
@@ -545,7 +562,8 @@
     "precision": "",
     "columns": 0,
     "idx": 6,
-    "modified": "2026-03-17 12:00:00.000000"
+    "modified": "2026-03-17 12:00:00.000000",
+    "doctype": "Custom Field"
   },
   {
     "name": "Address-custom_address_line_1",
@@ -575,7 +593,8 @@
     "precision": "",
     "columns": 0,
     "idx": 5,
-    "modified": "2026-03-17 12:00:00.000000"
+    "modified": "2026-03-17 12:00:00.000000",
+    "doctype": "Custom Field"
   },
   {
     "name": "Address-custom_zip_code",
@@ -605,7 +624,8 @@
     "precision": "",
     "columns": 0,
     "idx": 15,
-    "modified": "2026-03-17 12:00:00.000000"
+    "modified": "2026-03-17 12:00:00.000000",
+    "doctype": "Custom Field"
   },
   {
     "name": "Address-custom_province",
@@ -636,7 +656,8 @@
     "precision": "",
     "columns": 0,
     "idx": 14,
-    "modified": "2026-03-17 12:00:00.000000"
+    "modified": "2026-03-17 12:00:00.000000",
+    "doctype": "Custom Field"
   },
   {
     "name": "Address-custom_citymunicipality",
@@ -667,7 +688,8 @@
     "precision": "",
     "columns": 0,
     "idx": 13,
-    "modified": "2026-03-17 12:00:00.000000"
+    "modified": "2026-03-17 12:00:00.000000",
+    "doctype": "Custom Field"
   },
   {
     "name": "Address-custom_barangay",
@@ -698,7 +720,8 @@
     "precision": "",
     "columns": 0,
     "idx": 12,
-    "modified": "2026-03-17 12:00:00.000000"
+    "modified": "2026-03-17 12:00:00.000000",
+    "doctype": "Custom Field"
   },
   {
     "name": "Credit Application-workflow_state",
@@ -728,7 +751,8 @@
     "precision": "",
     "columns": 0,
     "idx": 0,
-    "modified": "2026-03-17 12:00:00.000000"
+    "modified": "2026-03-17 12:00:00.000000",
+    "doctype": "Custom Field"
   },
   {
     "name": "Territory-custom_column_break_4pmgw",
@@ -758,7 +782,8 @@
     "precision": "",
     "columns": 0,
     "idx": 9,
-    "modified": "2026-03-17 12:00:00.000000"
+    "modified": "2026-03-17 12:00:00.000000",
+    "doctype": "Custom Field"
   },
   {
     "name": "Vehicle-custom_column_break_k6es0",
@@ -788,7 +813,8 @@
     "precision": "",
     "columns": 0,
     "idx": 9,
-    "modified": "2026-03-17 12:00:00.000000"
+    "modified": "2026-03-17 12:00:00.000000",
+    "doctype": "Custom Field"
   },
   {
     "name": "Vehicle-custom_column_break_pzxmg",
@@ -818,7 +844,8 @@
     "precision": "",
     "columns": 0,
     "idx": 24,
-    "modified": "2026-03-17 12:00:00.000000"
+    "modified": "2026-03-17 12:00:00.000000",
+    "doctype": "Custom Field"
   },
   {
     "name": "Vehicle-custom_fuel__maintenance",
@@ -848,7 +875,8 @@
     "precision": "",
     "columns": 0,
     "idx": 21,
-    "modified": "2026-03-17 12:00:00.000000"
+    "modified": "2026-03-17 12:00:00.000000",
+    "doctype": "Custom Field"
   },
   {
     "name": "Vehicle-custom_column_break_ntstr",
@@ -878,7 +906,8 @@
     "precision": "",
     "columns": 0,
     "idx": 17,
-    "modified": "2026-03-17 12:00:00.000000"
+    "modified": "2026-03-17 12:00:00.000000",
+    "doctype": "Custom Field"
   },
   {
     "name": "Vehicle-custom_vehicle_information",
@@ -908,7 +937,8 @@
     "precision": "",
     "columns": 0,
     "idx": 12,
-    "modified": "2026-03-17 12:00:00.000000"
+    "modified": "2026-03-17 12:00:00.000000",
+    "doctype": "Custom Field"
   },
   {
     "name": "Vehicle-custom_assignment_details",
@@ -938,7 +968,8 @@
     "precision": "",
     "columns": 0,
     "idx": 8,
-    "modified": "2026-03-17 12:00:00.000000"
+    "modified": "2026-03-17 12:00:00.000000",
+    "doctype": "Custom Field"
   },
   {
     "name": "Vehicle-custom_basic_information",
@@ -967,7 +998,8 @@
     "precision": "",
     "columns": 0,
     "idx": 1,
-    "modified": "2026-03-17 12:00:00.000000"
+    "modified": "2026-03-17 12:00:00.000000",
+    "doctype": "Custom Field"
   },
   {
     "name": "Trip Ticket-workflow_state",
@@ -997,7 +1029,8 @@
     "precision": "",
     "columns": 0,
     "idx": 0,
-    "modified": "2026-03-17 12:00:00.000000"
+    "modified": "2026-03-17 12:00:00.000000",
+    "doctype": "Custom Field"
   },
   {
     "name": "Driver-custom_territory",
@@ -1028,7 +1061,8 @@
     "precision": "",
     "columns": 0,
     "idx": 7,
-    "modified": "2026-03-17 12:00:00.000000"
+    "modified": "2026-03-17 12:00:00.000000",
+    "doctype": "Custom Field"
   },
   {
     "name": "Communication-company",
@@ -1060,7 +1094,8 @@
     "precision": "",
     "columns": 0,
     "idx": 32,
-    "modified": "2026-03-17 12:00:00.000000"
+    "modified": "2026-03-17 12:00:00.000000",
+    "doctype": "Custom Field"
   },
   {
     "name": "Email Account-company",
@@ -1091,7 +1126,8 @@
     "precision": "",
     "columns": 0,
     "idx": 2,
-    "modified": "2026-03-17 12:00:00.000000"
+    "modified": "2026-03-17 12:00:00.000000",
+    "doctype": "Custom Field"
   },
   {
     "name": "Driver-custom_plate_number",
@@ -1121,7 +1157,8 @@
     "precision": "",
     "columns": 0,
     "idx": 6,
-    "modified": "2026-03-17 12:00:00.000000"
+    "modified": "2026-03-17 12:00:00.000000",
+    "doctype": "Custom Field"
   },
   {
     "name": "Driver-custom_driver_details",
@@ -1150,7 +1187,8 @@
     "precision": "",
     "columns": 0,
     "idx": 1,
-    "modified": "2026-03-17 12:00:00.000000"
+    "modified": "2026-03-17 12:00:00.000000",
+    "doctype": "Custom Field"
   },
   {
     "name": "Print Settings-print_taxes_with_zero_amount",
@@ -1181,7 +1219,8 @@
     "precision": "",
     "columns": 0,
     "idx": 16,
-    "modified": "2026-03-17 12:00:00.000000"
+    "modified": "2026-03-17 12:00:00.000000",
+    "doctype": "Custom Field"
   },
   {
     "name": "Print Settings-print_uom_after_quantity",
@@ -1212,7 +1251,8 @@
     "precision": "",
     "columns": 0,
     "idx": 10,
-    "modified": "2026-03-17 12:00:00.000000"
+    "modified": "2026-03-17 12:00:00.000000",
+    "doctype": "Custom Field"
   },
   {
     "name": "Print Settings-compact_item_print",
@@ -1243,7 +1283,8 @@
     "precision": "",
     "columns": 0,
     "idx": 9,
-    "modified": "2026-03-17 12:00:00.000000"
+    "modified": "2026-03-17 12:00:00.000000",
+    "doctype": "Custom Field"
   },
   {
     "name": "Address-is_your_company_address",
@@ -1274,7 +1315,8 @@
     "precision": "",
     "columns": 0,
     "idx": 25,
-    "modified": "2026-03-17 12:00:00.000000"
+    "modified": "2026-03-17 12:00:00.000000",
+    "doctype": "Custom Field"
   },
   {
     "name": "Contact-is_billing_contact",
@@ -1304,7 +1346,8 @@
     "precision": "",
     "columns": 0,
     "idx": 27,
-    "modified": "2026-03-17 12:00:00.000000"
+    "modified": "2026-03-17 12:00:00.000000",
+    "doctype": "Custom Field"
   },
   {
     "name": "Address-tax_category",
@@ -1335,6 +1378,7 @@
     "precision": "",
     "columns": 0,
     "idx": 20,
-    "modified": "2026-03-17 12:00:00.000000"
+    "modified": "2026-03-17 12:00:00.000000",
+    "doctype": "Custom Field"
   }
 ]

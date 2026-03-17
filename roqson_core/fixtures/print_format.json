@@ -12,7 +12,8 @@
     "align_labels_right": 0,
     "show_section_headings": 0,
     "print_format_builder_beta": 0,
-    "modified": "2026-03-17 12:00:00.000000"
+    "modified": "2026-03-17 12:00:00.000000",
+    "doctype": "Print Format"
   },
   {
     "name": "Billing Statement",
@@ -27,6 +28,7 @@
     "align_labels_right": 0,
     "show_section_headings": 0,
     "print_format_builder_beta": 0,
-    "modified": "2026-03-17 12:00:00.000000"
+    "modified": "2026-03-17 12:00:00.000000",
+    "doctype": "Print Format"
   }
 ]
