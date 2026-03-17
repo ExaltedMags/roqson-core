@@ -105,6 +105,15 @@ doc_events = {
         "before_save":            "roqson_core.customer_information.before_save",
         "on_update_after_submit": "roqson_core.customer_information.on_update_after_submit",
     },
+    "Order Form": {
+        "before_delete":          "roqson_core.order_form.before_delete",
+        "before_save":            "roqson_core.order_form.before_save",
+        "before_submit":          "roqson_core.order_form.before_submit",
+        "after_save":             "roqson_core.order_form.after_save",
+        "on_update_after_submit": "roqson_core.order_form.on_update_after_submit",
+        "on_submit":              "roqson_core.order_form.on_submit",
+        "on_cancel":              "roqson_core.order_form.on_cancel",
+    },
     "Trips": {
         "before_insert":   "roqson_core.trips.before_insert",
         "before_validate": "roqson_core.trips.before_validate",
