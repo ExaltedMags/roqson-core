@@ -44,6 +44,15 @@ fixtures = [
             "Trips Driver Assignment", "Trips Table",
         ]]]
     },
+    {
+        "dt": "Workflow",
+        "filters": [["name", "in", [
+            "Time in Time out",
+            "Order Workflow",
+            "Credit Approval",
+            "Credit Application Request Workflow",
+        ]]]
+    },
 ]
 
 # DocType event hooks — populated in Phase 5
