@@ -78,7 +78,12 @@ fixtures = [
 #         "on_update_after_submit":  "roqson_core.inventory_ledger.on_update_after_submit",
 #     },
 # }
-doc_events = {}
+doc_events = {
+    "Receipt": {
+        "before_cancel": "roqson_core.receipt.before_cancel",
+        "on_submit":     "roqson_core.receipt.on_submit",
+    },
+}
 
 # Permission query conditions — populated in Phase 6
 # Target state (from ARCHITECTURE.md):
