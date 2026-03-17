@@ -13,36 +13,6 @@ body::after {
 
 /* === Order Form === */
 
-/* Order Form list view deploy test beacon */
-.page-container[data-page-route="List/Order Form/List"] .layout-main-section {
-    border: 6px solid #ff5a36 !important;
-    border-radius: 18px !important;
-    box-shadow: 0 0 0 6px rgba(255, 196, 0, 0.45) !important;
-}
-.page-container[data-page-route="List/Order Form/List"] .layout-main-section::before {
-    content: "ROQSON CSS TEST ACTIVE";
-    display: block;
-    margin: 0 0 14px;
-    padding: 14px 18px;
-    background: repeating-linear-gradient(
-        135deg,
-        #ff5a36 0 16px,
-        #ffc400 16px 32px
-    );
-    color: #1f1300;
-    font-size: 22px;
-    font-weight: 800;
-    letter-spacing: 0.08em;
-    text-align: center;
-    border-radius: 12px;
-}
-.page-container[data-page-route="List/Order Form/List"] .list-row-head {
-    background: #fff4cf !important;
-}
-.page-container[data-page-route="List/Order Form/List"] .list-row-container .list-row:nth-child(odd) {
-    background: #e8fff1 !important;
-}
-
 /* Order Form UX Fix - Grid Mobile Fix */
 @media (max-width: 991px) {
     .form-grid .grid-body, .form-grid .grid-heading-row {

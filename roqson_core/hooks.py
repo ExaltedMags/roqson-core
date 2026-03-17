@@ -1,12 +1,12 @@
 app_name = "roqson_core"
-app_title = "ROQSON CORE CSS TEST"
+app_title = "Roqson Core"
 app_publisher = "ROQSON"
 app_description = "ROQSON Industrial Sales core customizations"
 app_version = "0.0.1"
 app_license = "MIT"
 
 app_include_css = [
-    "/assets/roqson_core/css/roqson_core_refresh.css"
+    "/assets/roqson_core/css/roqson_core.css"
 ]
 
 # Fixtures — Phase 4: Custom Fields + Print Formats
