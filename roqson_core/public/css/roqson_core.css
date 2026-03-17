@@ -1,7 +1,14 @@
 /* ROQSON Core Stylesheet
    Extracted from Client Script CSS injection — roqson_core CSS cleanup sprint
+   Beacon: Applied 2026-03-17 22:45
    Do not add business logic here. Styling only.
 */
+
+/* Beacon rule — purely for verification (invisible) */
+body::after {
+    content: "roqson_core_css_loaded";
+    display: none;
+}
 
 /* === Order Form === */
 
