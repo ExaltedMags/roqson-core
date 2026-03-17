@@ -5,10 +5,25 @@ app_description = "ROQSON Industrial Sales core customizations"
 app_version = "0.0.1"
 app_license = "MIT"
 
-# Fixtures — populated in Phase 4 (Custom Fields + Print Formats)
-#            Phase 8 (DocType JSON)
-#            Phase 9 (Workflow JSON)
-fixtures = []
+# Fixtures — Phase 4: Custom Fields + Print Formats
+#            Phase 8: DocType JSON
+#            Phase 9: Workflow JSON
+fixtures = [
+    {
+        "dt": "Custom Field",
+        "filters": [["dt", "in", [
+            "Trips", "Address", "Vehicle", "Vehicles", "Driver",
+            "Print Settings", "Order Form", "Sales", "Promos", "Contact",
+            "Communication", "Credit Application", "Email Account", "Territory",
+        ]]]
+    },
+    {
+        "dt": "Print Format",
+        "filters": [["name", "in", ["Sales Billing Statement", "Billing Statement"]]]
+    },
+    # Phase 8: DocType fixtures added here
+    # Phase 9: Workflow fixtures added here
+]
 
 # DocType event hooks — populated in Phase 5
 # Target state (from ARCHITECTURE.md):
