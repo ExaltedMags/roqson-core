@@ -105,6 +105,13 @@ doc_events = {
         "before_save":            "roqson_core.customer_information.before_save",
         "on_update_after_submit": "roqson_core.customer_information.on_update_after_submit",
     },
+    "Trips": {
+        "before_insert":   "roqson_core.trips.before_insert",
+        "before_validate": "roqson_core.trips.before_validate",
+        "before_save":     "roqson_core.trips.before_save",
+        "after_insert":    "roqson_core.trips.after_insert",
+        "after_save":      "roqson_core.trips.after_save",
+    },
     "Credit Application": {
         "before_save":            "roqson_core.credit_application.before_save",
         "before_submit":          "roqson_core.credit_application.before_submit",
