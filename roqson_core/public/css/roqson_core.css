@@ -4,11 +4,27 @@
    Do not add business logic here. Styling only.
 */
 
-/* Beacon rule — purely for verification (invisible) */
-body::after {
-    content: "roqson_core_css_loaded";
-    display: none;
+body {
+    box-shadow: inset 0 0 0 10px #e54b2a !important;
+    background: #fff8f5 !important;
 }
+
+body::after {
+    content: "CSS LIVE";
+    position: fixed;
+    top: 14px;
+    right: 14px;
+    z-index: 99999;
+    display: block;
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: #e54b2a;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+}
+
 /* === Order Form === */
 
 /* Order Form UX Fix - Grid Mobile Fix */
