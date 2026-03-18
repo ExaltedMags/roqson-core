@@ -3,8 +3,10 @@ from __future__ import annotations
 import json
 from contextlib import contextmanager
 from pathlib import Path
+from time import sleep
 
 import frappe
+from frappe.exceptions import QueryDeadlockError
 from frappe.core.doctype.data_import.data_import import import_doc
 
 
@@ -432,7 +434,15 @@ def ensure_local_workspaces() -> dict[str, object]:
             continue
         synced.append(_sync_workspace_from_fixture(name))
 
-    frappe.db.set_value("User", "Administrator", "default_workspace", "Home", update_modified=False)
+    for attempt in range(3):
+        try:
+            frappe.db.set_value("User", "Administrator", "default_workspace", "Home", update_modified=False)
+            break
+        except QueryDeadlockError:
+            if attempt == 2:
+                raise
+            frappe.db.rollback()
+            sleep(0.2)
     frappe.db.commit()
     return {"default_workspace": "Home", "synced_workspaces": synced}
 

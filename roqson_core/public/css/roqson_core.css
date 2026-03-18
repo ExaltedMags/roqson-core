@@ -9,8 +9,6 @@ body::after {
     content: "roqson_core_css_loaded";
     display: none;
 }
-
-
 /* === Order Form === */
 
 /* Order Form UX Fix - Grid Mobile Fix */

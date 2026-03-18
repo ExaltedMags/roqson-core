@@ -1,0 +1,15 @@
+HTTP/1.1 200 OK
+Server: Werkzeug/3.1.6 Python/3.11.15
+Date: Wed, 18 Mar 2026 07:07:17 GMT
+Content-Type: text/html; charset=utf-8
+Content-Length: 253193
+X-Page-Name: app
+X-From-Cache: False
+Link: </assets/frappe/dist/css/desk.bundle.PCTEZT5Z.css>; rel=preload; as=style,</assets/frappe/dist/css/report.bundle.U2YVK3PF.css>; rel=preload; as=style,</assets/erpnext/dist/css/erpnext.bundle.XAAK237K.css>; rel=preload; as=style,</assets/roqson_core/css/roqson_core.css>; rel=preload; as=style,</assets/frappe/dist/js/libs.bundle.LLRFRX7M.js>; rel=preload; as=script,</assets/frappe/dist/js/desk.bundle.I26AWLMT.js>; rel=preload; as=script,</assets/frappe/dist/js/list.bundle.6W3GQYI6.js>; rel=preload; as=script,</assets/frappe/dist/js/form.bundle.HNISN6WN.js>; rel=preload; as=script,</assets/frappe/dist/js/controls.bundle.ZZUZWVKU.js>; rel=preload; as=script,</assets/frappe/dist/js/report.bundle.NG5NMG3D.js>; rel=preload; as=script,</assets/frappe/dist/js/telemetry.bundle.DQEBDMFO.js>; rel=preload; as=script,</assets/frappe/dist/js/billing.bundle.CPRCUCBA.js>; rel=preload; as=script,</assets/erpnext/dist/js/erpnext.bundle.GOWWFYYH.js>; rel=preload; as=script,</assets/frappe/icons/timeless/icons.svg?v=1773817007.1447206>; rel=preload; as=fetch; crossorigin,</assets/frappe/icons/espresso/icons.svg?v=1773817007.1447206>; rel=preload; as=fetch; crossorigin
+Set-Cookie: sid=ce485db319527dc26388ec15143ec53e6fdef8efc332d8786075baca; Expires=Wed, 25 Mar 2026 09:07:17 GMT; Max-Age=612000; HttpOnly; Path=/; SameSite=Lax
+Set-Cookie: system_user=yes; Path=/; SameSite=Lax
+Set-Cookie: full_name=Administrator; Path=/; SameSite=Lax
+Set-Cookie: user_id=Administrator; Path=/; SameSite=Lax
+Set-Cookie: user_image=; Path=/; SameSite=Lax
+Connection: close
+

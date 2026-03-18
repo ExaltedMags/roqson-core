@@ -1,0 +1,16 @@
+HTTP/1.1 302 FOUND
+Server: Werkzeug/3.1.6 Python/3.11.15
+Date: Wed, 18 Mar 2026 07:01:39 GMT
+Content-Type: text/html; charset=utf-8
+Content-Length: 0
+X-Page-Name: me
+X-From-Cache: False
+Link: </assets/frappe/dist/css/website.bundle.KU5NE3FY.css>; rel=preload; as=style,</assets/erpnext/dist/css/erpnext-web.bundle.IJ6GM6CG.css>; rel=preload; as=style,</assets/frappe/dist/js/frappe-web.bundle.377WN3YR.js>; rel=preload; as=script,</website_script.js>; rel=preload; as=script,</assets/erpnext/dist/js/erpnext-web.bundle.253I7LT4.js>; rel=preload; as=script
+Location: /app
+Set-Cookie: sid=8cf3de41bb4d03d43d10b145247a722545382986b4a08d6fcdb6e8c0; Expires=Wed, 25 Mar 2026 09:01:39 GMT; Max-Age=612000; HttpOnly; Path=/; SameSite=Lax
+Set-Cookie: system_user=yes; Path=/; SameSite=Lax
+Set-Cookie: full_name=Administrator; Path=/; SameSite=Lax
+Set-Cookie: user_id=Administrator; Path=/; SameSite=Lax
+Set-Cookie: user_image=; Path=/; SameSite=Lax
+Connection: close
+

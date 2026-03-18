@@ -1,0 +1,21 @@
+HTTP/1.1 301 MOVED PERMANENTLY
+Server: Werkzeug/3.1.6 Python/3.11.15
+Date: Wed, 18 Mar 2026 07:04:20 GMT
+Content-Type: text/html; charset=utf-8
+Content-Length: 0
+X-Page-Name: app
+X-From-Cache: False
+Location: /login?redirect-to=%2Fapp
+Cache-Control: no-store, no-cache, must-revalidate
+Set-Cookie: sid=Guest; Expires=Wed, 25 Mar 2026 09:04:20 GMT; Max-Age=612000; HttpOnly; Path=/; SameSite=Lax
+Set-Cookie: system_user=no; Path=/; SameSite=Lax
+Set-Cookie: full_name=Guest; Path=/; SameSite=Lax
+Set-Cookie: user_id=Guest; Path=/; SameSite=Lax
+Set-Cookie: user_image=; Path=/; SameSite=Lax
+Set-Cookie: user_id=; Expires=Tue, 17 Mar 2026 15:04:20 GMT; Path=/
+Set-Cookie: full_name=; Expires=Tue, 17 Mar 2026 15:04:20 GMT; Path=/
+Set-Cookie: sid=; Expires=Tue, 17 Mar 2026 15:04:20 GMT; Path=/
+Set-Cookie: system_user=; Expires=Tue, 17 Mar 2026 15:04:20 GMT; Path=/
+Set-Cookie: user_image=; Expires=Tue, 17 Mar 2026 15:04:20 GMT; Path=/
+Connection: close
+
