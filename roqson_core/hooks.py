@@ -9,16 +9,230 @@ app_include_css = [
     "/assets/roqson_core/css/roqson_core.css"
 ]
 
+app_include_js = [
+    "/assets/roqson_core/js/generated/global_pcr_popup.bundle.js"
+]
+
+doctype_js = {
+    "Order Form": [
+        "public/js/order_form.bundle.js",
+        "public/js/generated/order_form_extras.bundle.js",
+    ],
+    "Sales": "public/js/sales_form.bundle.js",
+    "Customer Survey Form": "public/js/customer_survey_form.bundle.js",
+    "Customer Information": "public/js/customer_information_form.bundle.js",
+    "Product": "public/js/product_form.bundle.js",
+    "Trips": "public/js/trips_form.bundle.js",
+    "Credit Application": "public/js/generated/credit_application.bundle.js",
+    "Credit Application Request": "public/js/generated/credit_application_request.bundle.js",
+    "Discounts": "public/js/generated/discounts_form.bundle.js",
+    "Inventory Ledger": "public/js/generated/inventory_ledger.bundle.js",
+    "Inventory Balance": "public/js/generated/inventory_balance.bundle.js",
+    "Address": "public/js/generated/address.bundle.js",
+    "PH Address": "public/js/generated/ph_address.bundle.js",
+    "Drivers": "public/js/generated/drivers.bundle.js",
+    "Receipt": "public/js/generated/receipt_form.bundle.js",
+    "Brands": "public/js/generated/archive_misc_form.bundle.js",
+    "Nature of Business": "public/js/generated/archive_misc_form.bundle.js",
+    "Promos": "public/js/generated/archive_misc_form.bundle.js",
+    "Sales Personnel": "public/js/generated/archive_misc_form.bundle.js",
+    "Vehicles": "public/js/generated/archive_misc_form.bundle.js",
+    "Warehouses": "public/js/generated/archive_misc_form.bundle.js",
+    "Territories": [
+        "public/js/generated/archive_misc_form.bundle.js",
+        "public/js/generated/territories_form.bundle.js",
+    ],
+}
+
+doctype_list_js = {
+    "Sales": "public/js/sales_list.bundle.js",
+    "Customer Survey Form": "public/js/customer_survey_form_list.js",
+    "Customer Information": "public/js/customer_information_list.bundle.js",
+    "Product": "public/js/product_list.bundle.js",
+    "Trips": "public/js/trips_list.bundle.js",
+    "Order Form": "public/js/generated/order_form_list_extras.bundle.js",
+    "Credit Application": "public/js/generated/credit_application_list.bundle.js",
+    "Discounts": "public/js/generated/discounts_list.bundle.js",
+    "Brands": "public/js/generated/archive_misc_list.bundle.js",
+    "Nature of Business": "public/js/generated/archive_misc_list.bundle.js",
+    "Promos": "public/js/generated/archive_misc_list.bundle.js",
+    "Sales Personnel": "public/js/generated/archive_misc_list.bundle.js",
+    "Territories": "public/js/generated/archive_misc_list.bundle.js",
+    "Vehicles": "public/js/generated/archive_misc_list.bundle.js",
+    "Warehouses": "public/js/generated/archive_misc_list.bundle.js",
+}
+
+before_request = [
+    "roqson_core.local_auth.auto_login_administrator"
+]
+
+after_request = [
+    "roqson_core.local_auth.redirect_local_dev_to_app"
+]
+
+after_install = [
+    "roqson_core.dev.local_setup.sync_local_shell",
+]
+
+after_migrate = [
+    "roqson_core.dev.local_setup.sync_local_shell",
+]
+
 # Fixtures — Phase 4: Custom Fields + Print Formats
 #            Phase 8: DocType JSON
 #            Phase 9: Workflow JSON
 fixtures = [
     {
+        "dt": "Client Script",
+        "filters": [
+            ["enabled", "=", 1],
+            ["name", "not in", [
+                "Order Form Promos",
+                "Order Form: Stock Availability UX",
+                "Notes Acknowledgment",
+                "Order Form: Edit Mode Control",
+                "Order Form: Table Management & Calculation",
+                "Order Form: Totals Footer Row",
+                "Price Modified Flag",
+                "Sales: Paid Validation",
+                "Sales: Form Logic & Calculations",
+                "Sales: Customer Info Autofill",
+                "Sales: Cancel Warning",
+                "Sales Pick-up Confirmation",
+                "Sales List Script",
+                "Sales: Receipts Section",
+                "DSP Set Session",
+                "Notes Indicator CSF",
+                "Archive CSF List",
+                "Archive CSF Form",
+                "CSV: Fetch address",
+                "CSF: Signed by fields",
+                "CSF: DSP cant sign received fied",
+                "CSF: Add photos",
+                "CSF: Get Last Order",
+                "Customer Info - Display Name",
+                "Form Filters",
+                "Hide Delete",
+                "Order History Summary",
+                "Archive CI List",
+                "Archive CI Form",
+                "Sales Personnel",
+                "CI: Unlimited Credit Limit",
+                "CI: Edit Permissions",
+                "Customer Info: Address Helpers",
+                "Archive Product List",
+                "Archive Product Form",
+                "Product: Show Inventory",
+                "Trip Ticket: Display Name",
+                "Trip Ticket Linked with Order Form",
+                "Trip Ticket Failed Select",
+                "in-form big buttons (preferred) + fallback to toolbar buttons",
+                "Show Failure Reasons Dropdown",
+                "Full Order Script",
+                "Daily Numbering",
+                "Archive Trip Ticket List",
+                "Archive Trip Ticket Form",
+                "Dispatcher",
+                "Trip Ticket: Multi-Driver Operations",
+                "Credit Application - Display Name",
+                "DSP Session",
+                "Fix Credit Application",
+                "Signed By Fields",
+                "Archive CA List",
+                "Archive CA Form",
+                "Credit Application - CAR Linkback",
+                "CA: Unlimited Credit",
+                "CA: Credit Validation",
+                "CA: Workflow Stage Lock",
+                "CA: Block creation if unresolved exists",
+                "CA: Override Owners Signature",
+                "CA: Date time for Owners Signature",
+                "Credit Application Request - Sales Actions",
+                "Toggle Discount Fields",
+                "Discounts: Display Name",
+                "Archive Discounts List",
+                "Archive Discounts Form",
+                "Drivers: Filter Drivers",
+                "Inventory Balance Auto Compute",
+                "Created By Status",
+                "Source Type For Manual Adjustments",
+                "Movement Type",
+                "Fetch Rows",
+                "Show reason and explanation",
+                "Inventory Ledger Audit Trail",
+                "Movement Type Accessibility",
+                "PH Addresses",
+                "Address Script",
+                "Receipt: Form Controller",
+                "Archive Brands Form",
+                "Archive List Brands",
+                "Archive NOB List",
+                "Archive NOB Form",
+                "Archive Promo",
+                "Archive Promo Form",
+                "Archive SP List",
+                "Archive SP Form",
+                "Archive Teritorries List",
+                "Archive Territories Form",
+                "DSP Territories",
+                "Archive Vehicles List",
+                "Archive Vehicles Form",
+                "Archive Warehouses List",
+                "Archive Warehouses Form",
+                "Order Form Display",
+                "Order By Field",
+                "Order Form Fetch Addresses",
+                "Price Edit",
+                "Reward Item Name Display",
+                "Total Previous Orders",
+                "Hide Discounts for DSPs",
+                "Submitted or Amended forms ONLY",
+                "DSP Mandatory",
+                "Archive Order Form",
+                "Date Backtracking",
+                "Nature of Business Label",
+                "Date Time Sync",
+                "Order Form: Footer Row Summary Tab",
+                "Order Form List - Master",
+                "Combine Pref. Date and Time in one field",
+                "Pending Workflow Lock",
+                "Terms and MOP Policy",
+                "Request Credit Application Button",
+                "Warning Past Business Hours",
+                "Order Form: Warehouse Assignment",
+                "Order Form: Cancel Sales Warning",
+                "Order Form UX Fix",
+                "Order Form: Clear Jabroni Default",
+                "Order Form: DSP Restrictions",
+                "Order Form: Fulfillment Visibility",
+                "Price Change Request Pop Up",
+                "Workspace: PCR Popup",
+            ]],
+        ]
+    },
+    {
+        "dt": "Server Script",
+        "filters": [["disabled", "=", 0]]
+    },
+    {
+        "dt": "Role",
+        "filters": [["name", "in", [
+            "DSP", "President", "Manager", "Dispatcher", "Driver",
+            "Credit Investigator", "Sales",
+        ]]]
+    },
+    {
+        "dt": "Role Profile",
+        "filters": [["name", "in", [
+            "DSP", "President", "Manager", "Dispatcher", "Driver",
+            "Credit Investigator", "Sales",
+        ]]]
+    },
+    {
         "dt": "Custom Field",
         "filters": [["dt", "in", [
-            "Trips", "Address", "Vehicle", "Vehicles", "Driver",
-            "Print Settings", "Order Form", "Sales", "Promos", "Contact",
-            "Communication", "Credit Application", "Email Account", "Territory",
+            "Address", "Vehicle", "Driver", "Print Settings", "Contact",
+            "Communication", "Email Account", "Territory", "Warehouse", "User",
         ]]]
     },
     {
@@ -55,6 +269,14 @@ fixtures = [
             "Order Workflow",
             "Credit Approval",
             "Credit Application Request Workflow",
+        ]]]
+    },
+    {
+        "dt": "Workspace",
+        "filters": [["name", "in", [
+            "Home", "Selling", "Stock", "Users", "CRM", "Tools",
+            "ERPNext Settings", "ERPNext Integrations", "Integrations",
+            "Build", "Welcome Workspace",
         ]]]
     },
 ]

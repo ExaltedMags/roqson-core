@@ -1,0 +1,55 @@
+[
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2025-11-15 15:46:30.109914",
+  "name": "President",
+  "role_profile": "President",
+  "roles": [
+   {
+    "parent": "President",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "President"
+   }
+  ]
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2025-12-28 03:29:25.406625",
+  "name": "Driver",
+  "role_profile": "Driver",
+  "roles": [
+   {
+    "parent": "Driver",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Driver"
+   }
+  ]
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2025-08-28 22:33:20.976433",
+  "name": "Sales",
+  "role_profile": "Sales",
+  "roles": [
+   {
+    "parent": "Sales",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Stock User"
+   }
+  ]
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2025-11-09 03:30:39.472863",
+  "name": "DSP",
+  "role_profile": "DSP",
+  "roles": []
+ }
+]

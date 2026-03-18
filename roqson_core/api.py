@@ -2,6 +2,74 @@ import frappe
 import json
 
 
+WAREHOUSE_CODE_ALIASES = {
+    "SJ": ("SJ", "San Jose"),
+    "UG": ("UG", "Urdaneta", "Urdaneta City"),
+}
+
+
+def _normalize_label(value):
+    return (value or "").strip().lower()
+
+
+def _get_tracked_warehouses():
+    warehouses = frappe.get_all(
+        "Warehouses",
+        fields=["name", "warehouse_name"],
+        order_by="creation asc",
+        limit_page_length=100,
+    )
+
+    mapped = {}
+    fallback = []
+    for warehouse in warehouses:
+        name = warehouse.get("name")
+        warehouse_name = warehouse.get("warehouse_name") or ""
+        normalized_name = _normalize_label(warehouse_name)
+        normalized_docname = _normalize_label(name)
+
+        for code, aliases in WAREHOUSE_CODE_ALIASES.items():
+            alias_match = any(
+                alias.lower() in normalized_name or alias.lower() in normalized_docname
+                for alias in aliases
+            )
+            if alias_match and code not in mapped:
+                mapped[code] = {
+                    "name": name,
+                    "warehouse_name": code,
+                    "label": warehouse_name or name,
+                }
+                break
+        else:
+            fallback.append({
+                "name": name,
+                "warehouse_name": warehouse_name or name,
+                "label": warehouse_name or name,
+            })
+
+    ordered = []
+    for code in ("UG", "SJ"):
+        if code in mapped:
+            ordered.append(mapped[code])
+    ordered.extend(row for row in fallback if row["name"] not in {item["name"] for item in ordered})
+    return ordered
+
+
+def _get_warehouse_name_from_code(code_or_name):
+    if not code_or_name:
+        return None
+
+    normalized = _normalize_label(code_or_name)
+    for warehouse in _get_tracked_warehouses():
+        if normalized in {
+            _normalize_label(warehouse["name"]),
+            _normalize_label(warehouse["warehouse_name"]),
+            _normalize_label(warehouse["label"]),
+        }:
+            return warehouse["name"]
+    return code_or_name
+
+
 # ---------------------------------------------------------------------------
 # Customer Survey Form helpers
 # ---------------------------------------------------------------------------
@@ -25,7 +93,12 @@ def get_last_outlet_order(outlet=None):
         product = frappe.db.get_value("Product", row.item, "item_description")
         items.append({"item_name": product or row.item, "qty": row.qty})
 
-    return {"creation_date": doc.creation_date, "items": items}
+    return {
+        "name": doc.name,
+        "creation_date": doc.creation_date,
+        "grand_total": doc.grand_total,
+        "items": items
+    }
 
 
 @frappe.whitelist()
@@ -78,7 +151,6 @@ def get_product_stock(product=None, warehouse=None, mode=None):
     if not product:
         return {"error": "No product provided"}
 
-    wh_map = {"SJ": "WH-00001", "UG": "WH-00002"}
     query = """
         SELECT
             SUM(CASE WHEN l.movement_type = 'In' THEN t.qty ELSE 0 END) AS qty_in,
@@ -92,7 +164,7 @@ def get_product_stock(product=None, warehouse=None, mode=None):
     """
     args = [product]
     if warehouse:
-        target_wh = wh_map.get(warehouse, warehouse)
+        target_wh = _get_warehouse_name_from_code(warehouse)
         query += " AND (l.warehouse = %s OR t.warehouse = %s)"
         args += [target_wh, target_wh]
 
@@ -117,8 +189,9 @@ def get_promo_warehouse(product=None):
     if not product:
         return {"error": "No product provided"}
 
-    SJ_WH = "WH-00001"
-    UG_WH = "WH-00002"
+    tracked_warehouses = _get_tracked_warehouses()[:2]
+    if not tracked_warehouses:
+        return {"error": "No tracked warehouses found"}
 
     def get_wh_stock(wh):
         data = frappe.db.sql(
@@ -137,23 +210,48 @@ def get_promo_warehouse(product=None):
             return float(data[0].get("available") or 0)
         return 0.0
 
-    sj_stock = get_wh_stock(SJ_WH)
-    ug_stock = get_wh_stock(UG_WH)
+    stock_rows = []
+    for warehouse in tracked_warehouses:
+        stock_rows.append({
+            **warehouse,
+            "available": get_wh_stock(warehouse["name"]),
+        })
 
-    if sj_stock <= 0 and ug_stock <= 0:
-        return {"error": "No stock available in any warehouse", "sj_stock": sj_stock, "ug_stock": ug_stock}
-    if ug_stock > sj_stock:
-        return {"warehouse": UG_WH, "warehouse_name": "UG", "sj_stock": sj_stock, "ug_stock": ug_stock}
-    return {"warehouse": SJ_WH, "warehouse_name": "SJ", "sj_stock": sj_stock, "ug_stock": ug_stock}
+    stock_by_code = {row["warehouse_name"]: row["available"] for row in stock_rows}
+    if all(row["available"] <= 0 for row in stock_rows):
+        return {
+            "error": "No stock available in any warehouse",
+            "stocks": stock_rows,
+            "sj_stock": stock_by_code.get("SJ", 0.0),
+            "ug_stock": stock_by_code.get("UG", 0.0),
+        }
+
+    selected = max(stock_rows, key=lambda row: row["available"])
+    return {
+        "warehouse": selected["name"],
+        "warehouse_name": selected["warehouse_name"],
+        "warehouse_label": selected["label"],
+        "stocks": stock_rows,
+        "sj_stock": stock_by_code.get("SJ", 0.0),
+        "ug_stock": stock_by_code.get("UG", 0.0),
+    }
 
 
 @frappe.whitelist()
 def get_product_inventory(product=None):
     """Product: Get Inventory — per-warehouse inventory display."""
+    tracked_warehouses = _get_tracked_warehouses()
+    if not tracked_warehouses:
+        return []
+
+    warehouse_names = [row["name"] for row in tracked_warehouses]
+    placeholders = ", ".join(["%s"] * len(warehouse_names))
+
     data = frappe.db.sql(
-        """
+        f"""
         SELECT
             w.name AS warehouse,
+            w.warehouse_name AS warehouse_label,
             COALESCE(i.in_qty,0)       AS in_qty,
             COALESCE(s.out_qty,0)      AS out_qty,
             COALESCE(r.reserved_qty,0) AS reserved_qty,
@@ -184,9 +282,9 @@ def get_product_inventory(product=None):
               AND (s.status IS NULL OR s.status NOT IN ('Dispatching','In Transit','Received','Completed'))
             GROUP BY r.items, r.warehouse
         ) r ON r.warehouse = w.name AND r.product = %s
-        WHERE w.name IN ('WH-00001','WH-00002')
+        WHERE w.name IN ({placeholders})
         """,
-        (product, product, product),
+        (product, product, product, *warehouse_names),
         as_dict=True,
     )
     return data
