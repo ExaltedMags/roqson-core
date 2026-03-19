@@ -231,42 +231,49 @@ Set up this repo as a local Frappe / ERPNext development environment for roqson_
 Context:
 - Repo path: /absolute/path/to/roqson_core
 - Goal: create a working local ERPNext + roqson_core setup for development
+- If localhost already boots but the Company/master data is wrong, fix the data parity issue instead of rebuilding blindly
 - Target: Frappe v15 / ERPNext v15
 - Preferred local site name: roqson.local
 - If MariaDB port 3306 is occupied, use 3307 instead
 - Enable developer mode and local auto-login for localhost
 - The repo path may differ on this machine, so detect it from the current workspace or ask only if truly necessary
 - Do not assume the repo contains full business seed data such as the exact production Company record
+- This repo includes a local backup folder under `pre-staging drop backups`; use that backup set as the first restore source when exact ROQSON data is required
 
 What I need you to do:
 1. check for missing dependencies
-2. install required dependencies if missing
-3. create a Frappe bench
-4. install ERPNext
-5. link/install roqson_core from the local repo path
-6. create the local site
-7. install roqson_core
-8. configure:
+2. inspect whether a compatible local bench and local site already exist, and reuse them when appropriate
+3. locate the local backup set inside the repo if it exists
+4. install required dependencies if missing
+5. create a Frappe bench only if needed
+6. install ERPNext
+7. link/install roqson_core from the local repo path
+8. if the local site does not exist yet, create it
+9. if the local site exists but the Company/master data is wrong or missing, restore the repo-provided backup set instead of creating placeholder business data
+10. ensure roqson_core is installed correctly after restore or site creation
+11. configure:
    - developer_mode = 1
    - local_dev_auto_login = 1
    - local_dev_landing_page = /app/home
-9. confirm the app hooks are present and active:
+12. confirm the app hooks are present and active:
    - roqson_core.local_auth.auto_login_administrator in before_request
    - roqson_core.local_auth.redirect_local_dev_to_app in after_request
-10. verify the local site runs
-11. tell me the exact localhost URL to open first
-12. install the `roqson` helper command from this repo
-13. if setup wizard or onboarding appears because core site data is missing, do not invent or silently create substitute business records and call it parity; instead:
+13. verify the local site runs with the correct restored ROQSON data
+14. tell me the exact localhost URL to open first
+15. install the `roqson` helper command from this repo
+16. if setup wizard or onboarding appears because core site data is missing, do not invent or silently create substitute business records and call it parity; instead:
    - explain exactly what data is missing
    - tell me whether the repo actually contains that data
-   - prefer restoring the existing site backup if I want the exact ROQSON company and realistic data
+   - prefer restoring the backup set in `pre-staging drop backups` if I want the exact ROQSON company and realistic data
    - only create placeholder bootstrap records if I explicitly approve that tradeoff
+17. if the site already boots but the Company is wrong, treat that as a restore/parity problem, not a setup-complete state
 
 Important implementation detail:
 - In this repo, local auto-login only triggers on local requests that are not under /app
 - So the first URL to open should usually be http://127.0.0.1:8000/ or http://127.0.0.1:8000/login
 - That first request should establish the Administrator session and then redirect to /app/home
 - A fresh install can be useful for code iteration, but it is not proof that the repo contains the exact staging/master data
+- If the backup restore succeeds, the real ROQSON company/master data should come from the restored site state, not from newly invented records
 
 Rules:
 - prefer safe, non-destructive commands
@@ -275,6 +282,7 @@ Rules:
 - assume this machine is for development only
 - do not assume a hardcoded filesystem path
 - do not create a new Company, Chart of Accounts, or other business master data as a silent substitute for the existing ROQSON setup
+- if a placeholder Company already exists locally, do not treat it as success; replace it through the proper restore path
 ```
 
 ## Notes
