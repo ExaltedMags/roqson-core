@@ -213,6 +213,20 @@ function style_all_columns(page) {
 
     const OF_CLASSES = Object.keys(OF_COL_WIDTHS);
 
+    const headerRow = page.querySelector(".list-row-head");
+    let tagIndex = -1;
+    if (headerRow) {
+        const headerCols = Array.from(headerRow.querySelectorAll(".list-row-col"));
+        headerCols.forEach((col, idx) => {
+            const text = (col.textContent || "").trim();
+            if (col.classList.contains("tag-col") || text === "Tag") {
+                col.classList.add("tag-col");
+                col.style.setProperty("display", "none", "important");
+                tagIndex = idx;
+            }
+        });
+    }
+
     // Map data-filter field names to our classes
     const fieldClassMap = {
         "name":                              "of-col-id",
@@ -221,7 +235,6 @@ function style_all_columns(page) {
         "order_by":                          "of-col-createdby",
         "date":                              "of-col-date",
         "reservation_urgency":               "of-col-reservation",
-        "preferred_delivery_date_and_time":   "of-col-delivery-dt",
         "preferred_delivery_date_and_time":   "of-col-delivery-dt",
         "address":                           "of-col-address",
     };
@@ -262,11 +275,15 @@ function style_all_columns(page) {
     }
 
     // ── Header ──────────────────────────────────────────────────────────────
-    const headerRow = page.querySelector(".list-row-head");
     if (headerRow) {
         const allHCols = Array.from(headerRow.querySelectorAll(".list-row-col"));
         allHCols.forEach(col => {
             const text = (col.textContent || "").trim();
+            if (col.classList.contains("tag-col") || text === "Tag") {
+                col.classList.add("tag-col");
+                col.style.setProperty("display", "none", "important");
+                return;
+            }
             const cls  = headerLabelMap[text];
             if (cls) {
                 resetCol(col);
@@ -286,6 +303,11 @@ function style_all_columns(page) {
     // ── Data rows ───────────────────────────────────────────────────────────
     page.querySelectorAll(".list-row-container .list-row").forEach(row => {
         const cols = Array.from(row.querySelectorAll(".list-row-col"));
+
+        if (tagIndex >= 0 && cols[tagIndex]) {
+            cols[tagIndex].classList.add("tag-col");
+            cols[tagIndex].style.setProperty("display", "none", "important");
+        }
 
         // Step 1: Reset ALL columns first to clear any stale styles
         cols.forEach(col => {
@@ -430,142 +452,11 @@ frappe.listview_settings["Order Form"] = {
             listview.page.add_menu_item(`Show ${state}`, () => set_state_filter(listview, state));
         });
         listview.page.add_menu_item("Show All", () => clear_state_filter(listview));
-        // ── CSS injection ────────────────────────────────────────────────────────
-        function injectCSS() {
-            const existing = document.getElementById("of-list-css");
-            if (existing) existing.remove();
-            const style = document.createElement("style");
-            style.id    = "of-list-css";
-            style.textContent = `
-#page-List\\/Order\\ Form\\/List .list-row-activity .comment-count,
-#page-List\\/Order\\ Form\\/List .list-row-activity .mx-2,
-#page-List\\/Order\\ Form\\/List .list-row-activity .list-row-like { display: none !important; }
-#page-List\\/Order\\ Form\\/List .list-header-meta .list-liked-by-me { display: none !important; }
-
-#page-List\\/Order\\ Form\\/List .list-subject {
-    flex: 0 0 30px !important; min-width: 30px !important; max-width: 30px !important;
-    overflow: hidden !important;
-}
-#page-List\\/Order\\ Form\\/List .list-subject .level-item.bold,
-#page-List\\/Order\\ Form\\/List .list-subject .level-item.ellipsis,
-#page-List\\/Order\\ Form\\/List .list-header-subject .list-subject-title,
-#page-List\\/Order\\ Form\\/List .list-header-subject .list-header-meta { display: none !important; }
-
-#page-List\\/Order\\ Form\\/List .list-row-head .level-left,
-#page-List\\/Order\\ Form\\/List .list-row-container .list-row .level-left {
-    flex: 0 0 auto !important; min-width: 0 !important; max-width: none !important; overflow: visible !important;
-}
-#page-List\\/Order\\ Form\\/List .list-row-head .level-right,
-#page-List\\/Order\\ Form\\/List .list-row-container .list-row .level-right {
-    flex: 0 0 95px !important; min-width: 95px !important; max-width: 95px !important; overflow: hidden !important;
-}
-
-#page-List\\/Order\\ Form\\/List .list-row-head .level-right .list-count {
-    white-space: nowrap !important; overflow: hidden !important; text-overflow: ellipsis !important;
-}
-
-#page-List\\/Order\\ Form\\/List .list-row-col { margin-right: 0 !important; }
-
-#page-List\\/Order\\ Form\\/List .of-col-id {
-    flex: 0 0 140px !important; min-width: 140px !important; max-width: 140px !important;
-    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-    padding-left: 8px; padding-right: 8px; box-sizing: border-box;
-    font-weight: 700;
-}
-#page-List\\/Order\\ Form\\/List .of-col-status {
-    flex: 0 0 130px !important; min-width: 130px !important; max-width: 130px !important;
-    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-    padding-left: 8px; padding-right: 8px; box-sizing: border-box;
-    display: flex !important; align-items: center !important;
-}
-#page-List\\/Order\\ Form\\/List .of-col-outlet {
-    flex: 0 0 240px !important; min-width: 240px !important; max-width: 240px !important;
-    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-    padding-left: 8px; padding-right: 8px; box-sizing: border-box;
-}
-#page-List\\/Order\\ Form\\/List .of-col-delivery-dt {
-    flex: 0 0 150px !important; min-width: 150px !important; max-width: 150px !important;
-    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-    padding-left: 8px; padding-right: 8px; box-sizing: border-box;
-    display: flex !important;
-}
-#page-List\\/Order\\ Form\\/List .of-col-address {
-    flex: 0 0 220px !important; min-width: 220px !important; max-width: 220px !important;
-    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-    padding-left: 8px; padding-right: 8px; box-sizing: border-box;
-}
-#page-List\\/Order\\ Form\\/List .of-col-reservation {
-    flex: 0 0 110px !important; min-width: 110px !important; max-width: 110px !important;
-    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-    padding-left: 8px; padding-right: 8px; box-sizing: border-box;
-}
-#page-List\\/Order\\ Form\\/List .of-col-createdby {
-    flex: 0 0 130px !important; min-width: 130px !important; max-width: 130px !important;
-    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-    padding-left: 8px; padding-right: 8px; box-sizing: border-box;
-}
-#page-List\\/Order\\ Form\\/List .of-col-date {
-    flex: 0 0 110px !important; min-width: 110px !important; max-width: 110px !important;
-    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-    padding-left: 8px; padding-right: 8px; box-sizing: border-box;
-}
-#page-List\\/Order\\ Form\\/List .of-col-delivery-dt.hidden-xs { display: flex !important; }
-
-#page-List\\/Order\\ Form\\/List .list-row-activity {
-    flex: 0 0 95px !important; min-width: 95px !important; max-width: 95px !important;
-}
-
-#page-List\\/Order\\ Form\\/List .list-row-head,
-#page-List\\/Order\\ Form\\/List .list-row-container .list-row {
-    min-width: 1500px !important;
-    flex-wrap: nowrap !important; display: flex !important;
-}
-
-#page-List\\/Order\\ Form\\/List .layout-main-section { overflow: visible !important; }
-#page-List\\/Order\\ Form\\/List .result { overflow-x: auto !important; -webkit-overflow-scrolling: touch; }
-
-#page-List\\/Order\\ Form\\/List .list-row-col {
-    overflow: hidden !important; text-overflow: ellipsis !important; white-space: nowrap !important;
-}
-
-/* Force ALL columns visible on all screen sizes - rely on horizontal scroll instead of hiding */
-#page-List\\/Order\\ Form\\/List .list-row-col.hidden-xs,
-#page-List\\/Order\\ Form\\/List .list-row-col.hidden-sm,
-#page-List\\/Order\\ Form\\/List .list-row-col.hidden-md,
-#page-List\\/Order\\ Form\\/List .list-row-head .list-row-col.hidden-xs,
-#page-List\\/Order\\ Form\\/List .list-row-head .list-row-col.hidden-sm,
-#page-List\\/Order\\ Form\\/List .list-row-head .list-row-col.hidden-md {
-    display: flex !important;
-}
-
-/* Ensure scroll container chain works on mobile/tablet */
-#page-List\\/Order\\ Form\\/List .frappe-list,
-#page-List\\/Order\\ Form\\/List .layout-main-section-wrapper {
-    overflow: visible !important;
-}
-#page-List\\/Order\\ Form\\/List .result {
-    overflow-x: auto !important;
-    -webkit-overflow-scrolling: touch;
-}
-`;
-            document.head.appendChild(style);
-        }
-
-        function removeCSS() {
-            const el = document.getElementById("of-list-css");
-            if (el) el.remove();
-        }
-
-        injectCSS();
         if (!listview.__of_route_handler) {
             listview.__of_route_handler = true;
             frappe.router.on("change", () => {
                 const route = frappe.get_route();
-                if (route && route[0] === "List" && route[1] === "Order Form") {
-                    injectCSS();
-                } else {
-                    removeCSS();
-                }
+                if (route && route[0] === "List" && route[1] === "Order Form") return;
             });
         }
 

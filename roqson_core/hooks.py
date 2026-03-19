@@ -10,7 +10,36 @@ app_include_css = [
 ]
 
 app_include_js = [
-    "/assets/roqson_core/js/generated/global_pcr_popup.bundle.js"
+    "/assets/roqson_core/js/sidebar_default.js",
+    "/assets/roqson_core/js/generated/global_pcr_popup.bundle.js",
+    # Custom doctypes do not receive doctype_js / doctype_list_js via meta assets
+    # in this Frappe build, so load the migrated app-owned bundles globally.
+    "/assets/roqson_core/js/sales_form.bundle.js",
+    "/assets/roqson_core/js/sales_list.bundle.js",
+    "/assets/roqson_core/js/customer_survey_form.bundle.js",
+    "/assets/roqson_core/js/customer_survey_form_list.js",
+    "/assets/roqson_core/js/customer_information_form.bundle.js",
+    "/assets/roqson_core/js/customer_information_list.bundle.js",
+    "/assets/roqson_core/js/product_form.bundle.js",
+    "/assets/roqson_core/js/product_list.bundle.js",
+    "/assets/roqson_core/js/trips_form.bundle.js",
+    "/assets/roqson_core/js/trips_list.bundle.js",
+    "/assets/roqson_core/js/order_form.bundle.js",
+    "/assets/roqson_core/js/generated/order_form_extras.bundle.js",
+    "/assets/roqson_core/js/generated/order_form_list_extras.bundle.js",
+    "/assets/roqson_core/js/generated/credit_application.bundle.js",
+    "/assets/roqson_core/js/generated/credit_application_list.bundle.js",
+    "/assets/roqson_core/js/generated/credit_application_request.bundle.js",
+    "/assets/roqson_core/js/generated/discounts_form.bundle.js",
+    "/assets/roqson_core/js/generated/discounts_list.bundle.js",
+    "/assets/roqson_core/js/generated/inventory_ledger.bundle.js",
+    "/assets/roqson_core/js/generated/inventory_balance.bundle.js",
+    "/assets/roqson_core/js/generated/ph_address.bundle.js",
+    "/assets/roqson_core/js/generated/drivers.bundle.js",
+    "/assets/roqson_core/js/generated/receipt_form.bundle.js",
+    "/assets/roqson_core/js/generated/archive_misc_form.bundle.js",
+    "/assets/roqson_core/js/generated/archive_misc_list.bundle.js",
+    "/assets/roqson_core/js/generated/territories_form.bundle.js",
 ]
 
 doctype_js = {
@@ -212,7 +241,43 @@ fixtures = [
     },
     {
         "dt": "Server Script",
-        "filters": [["disabled", "=", 0]]
+        "filters": [
+            ["disabled", "=", 0],
+            ["name", "not in", [
+                "Allow Delivery Address Edit for Admin",
+                "Approved, Rejected, Reserved, Dispatched, Delivered, Delivery Failed, Rescheduled",
+                "Archive Order Form",
+                "Auto Approve",
+                "Auto Cancel Sales on Order Cancellation",
+                "Auto Create Sales on Approval",
+                "Auto-close PCRs on Order Delete (DocType Event)",
+                "Auto-fill Approved By",
+                "Fix Credit App",
+                "Get Active Trip Order Names",
+                "Inventory Stock Canceled",
+                "Inventory Stock Out",
+                "MOP Cash Terms Bypass",
+                "Notes Acknowledgment Validation",
+                "Order Canceled Notification",
+                "Order Form Admin Edit Bypass",
+                "Order Form Stock Notiffication",
+                "Order Submitted Notification",
+                "Overheld Reservation Notification",
+                "Price Change Request Creator",
+                "Price Edit",
+                "Price Modified Flag",
+                "RPM Bulk Update Fields",
+                "RPM Get Doctypes",
+                "RPM Get Field Permissions",
+                "RPM Get Fields",
+                "RPM Get Permissions",
+                "RPM Get Roles",
+                "RPM Update Field Permlevel",
+                "RPM Update Permission",
+                "Reservation cannot exceed available",
+                "Validate Term Request Change",
+            ]],
+        ]
     },
     {
         "dt": "Role",
@@ -233,6 +298,18 @@ fixtures = [
         "filters": [["dt", "in", [
             "Address", "Vehicle", "Driver", "Print Settings", "Contact",
             "Communication", "Email Account", "Territory", "Warehouse", "User",
+        ]]]
+    },
+    {
+        "dt": "Property Setter",
+        "filters": [["doc_type", "in", [
+            "Address", "Brands", "Contact", "Credit Application",
+            "Credit Application Request", "Customer Information",
+            "Customer Survey Form", "Discounts", "Drivers", "Inventory Balance",
+            "Inventory Ledger", "Nature of Business", "Order Form",
+            "PH Address", "Print Settings", "Product", "Promos", "Receipt",
+            "Sales", "Sales Personnel", "Territories", "Trips", "User",
+            "Vehicle", "Vehicles", "Warehouse", "Warehouses",
         ]]]
     },
     {

@@ -4,27 +4,165 @@
    Do not add business logic here. Styling only.
 */
 
-body {
-    box-shadow: inset 0 0 0 10px #e54b2a !important;
-    background: #fff8f5 !important;
-}
-
+/* Beacon rule — purely for verification (invisible) */
 body::after {
-    content: "CSS LIVE";
-    position: fixed;
-    top: 14px;
-    right: 14px;
-    z-index: 99999;
-    display: block;
-    padding: 8px 12px;
-    border-radius: 999px;
-    background: #e54b2a;
-    color: #ffffff;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
+    content: "roqson_core_css_loaded";
+    display: none;
 }
 
+/* === Trips List === */
+
+.tt-trips-list-scope .list-subject {
+    flex: 0 0 340px !important;
+    min-width: 340px !important;
+    max-width: 340px !important;
+    overflow: hidden !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+.tt-trips-list-scope .list-header-subject .list-header-meta {
+    display: none !important;
+}
+
+.tt-trips-list-scope .list-row-head .level-left,
+.tt-trips-list-scope .list-row-container .list-row .level-left {
+    flex: 0 0 auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    overflow: visible !important;
+}
+
+.tt-trips-list-scope .list-row-head .level-right,
+.tt-trips-list-scope .list-row-container .list-row .level-right {
+    flex: 0 0 0 !important;
+    min-width: 0 !important;
+    max-width: 0 !important;
+    overflow: hidden !important;
+    display: none !important;
+}
+
+.tt-trips-list-scope .list-row-col {
+    margin-right: 0 !important;
+}
+
+.tt-trips-list-scope .tag-col {
+    display: none !important;
+}
+
+.tt-trips-list-scope .list-row-head,
+.tt-trips-list-scope .list-row-container .list-row {
+    min-width: 1740px !important;
+    flex-wrap: nowrap !important;
+    display: flex !important;
+}
+
+.tt-trips-list-scope .layout-main-section {
+    overflow: visible !important;
+}
+
+.tt-trips-list-scope.frappe-list,
+.tt-trips-list-scope .frappe-list,
+.tt-trips-list-scope .layout-main-section-wrapper,
+.tt-trips-list-scope .result {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+}
+
+.tt-trips-list-scope .list-row-col.hidden-xs,
+.tt-trips-list-scope .list-row-col.hidden-sm,
+.tt-trips-list-scope .list-row-col.hidden-md,
+.tt-trips-list-scope .list-row-head .list-row-col.hidden-xs,
+.tt-trips-list-scope .list-row-head .list-row-col.hidden-sm,
+.tt-trips-list-scope .list-row-head .list-row-col.hidden-md {
+    display: flex !important;
+}
+
+/* === Sales List === */
+
+#page-List\/Sales\/List .list-row-activity .comment-count,
+#page-List\/Sales\/List .list-row-activity .mx-2,
+#page-List\/Sales\/List .list-row-activity .list-row-like {
+    display: none !important;
+}
+
+#page-List\/Sales\/List .list-header-meta .list-liked-by-me {
+    display: none !important;
+}
+
+#page-List\/Sales\/List .list-subject {
+    flex: 0 0 200px !important;
+    min-width: 200px !important;
+    max-width: 200px !important;
+    overflow: hidden !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+#page-List\/Sales\/List .list-header-subject .list-header-meta {
+    display: none !important;
+}
+
+#page-List\/Sales\/List .list-row-head .level-left,
+#page-List\/Sales\/List .list-row-container .list-row .level-left {
+    flex: 0 0 auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    overflow: visible !important;
+}
+
+#page-List\/Sales\/List .list-row-head .level-right,
+#page-List\/Sales\/List .list-row-container .list-row .level-right {
+    flex: 0 0 0 !important;
+    min-width: 0 !important;
+    max-width: 0 !important;
+    overflow: hidden !important;
+    display: none !important;
+}
+
+#page-List\/Sales\/List .list-row-col {
+    margin-right: 0 !important;
+}
+
+#page-List\/Sales\/List .tag-col {
+    display: none !important;
+}
+
+#page-List\/Sales\/List .list-row-head,
+#page-List\/Sales\/List .list-row-container .list-row {
+    min-width: 1630px !important;
+    flex-wrap: nowrap !important;
+    display: flex !important;
+}
+
+#page-List\/Sales\/List .layout-main-section {
+    overflow: visible !important;
+}
+
+#page-List\/Sales\/List .frappe-list,
+#page-List\/Sales\/List .layout-main-section-wrapper {
+    overflow: visible !important;
+}
+
+#page-List\/Sales\/List .result {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+}
+
+#page-List\/Sales\/List .list-row-col.hidden-xs,
+#page-List\/Sales\/List .list-row-col.hidden-sm,
+#page-List\/Sales\/List .list-row-col.hidden-md,
+#page-List\/Sales\/List .list-row-head .list-row-col.hidden-xs,
+#page-List\/Sales\/List .list-row-head .list-row-col.hidden-sm,
+#page-List\/Sales\/List .list-row-head .list-row-col.hidden-md {
+    display: flex !important;
+}
+
+.row-locked {
+    opacity: 0.5;
+    background-color: #f9f9f9 !important;
+    pointer-events: none;
+}
 /* === Order Form === */
 
 /* Order Form UX Fix - Grid Mobile Fix */
@@ -91,6 +229,10 @@ body::after {
 }
 
 #page-List\/Order\ Form\/List .list-row-col { margin-right: 0 !important; }
+
+#page-List\/Order\ Form\/List .tag-col {
+    display: none !important;
+}
 
 #page-List\/Order\ Form\/List .of-col-id {
     flex: 0 0 140px !important; min-width: 140px !important; max-width: 140px !important;

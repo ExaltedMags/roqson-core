@@ -453,10 +453,12 @@ def sync_local_shell() -> dict[str, object]:
     doctype_status = import_missing_doctype_fixtures()
     doctype_fixture_status = import_fixture_file("doctype.json")
     custom_field_status = import_fixture_file("custom_field.json")
+    property_setter_status = import_fixture_file("property_setter.json")
     workspace_status = ensure_local_workspaces()
     return {
         "doctype_status": doctype_status,
         "doctype_fixture_status": doctype_fixture_status,
         "custom_field_status": custom_field_status,
+        "property_setter_status": property_setter_status,
         **workspace_status,
     }

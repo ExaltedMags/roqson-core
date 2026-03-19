@@ -16,6 +16,7 @@ var TT_WIDTHS = {
 // subject(340) + 110+200+130+110+200+220+120 = 1370 => row min 1740px
 var TT_ROW_MIN = "1740px";
 var TT_ALL_CLS = Object.keys(TT_WIDTHS);
+var TT_SCOPE_CLASS = "tt-trips-list-scope";
 
 // Map lowercased trimmed header text → semantic class
 var TT_LABEL_MAP = {
@@ -50,17 +51,21 @@ function tt_style_columns(page) {
     // Pass 1: Read header labels → build colClasses index
     var colClasses = [];
     var headerRow = page.querySelector(".list-row-head");
+    var tagIndex = -1;
     if (headerRow) {
-        Array.from(headerRow.querySelectorAll(".list-row-col")).forEach(function(col) {
+        Array.from(headerRow.querySelectorAll(".list-row-col")).forEach(function(col, idx) {
             if (col.classList.contains("list-subject")) return;
             if (col.classList.contains("tag-col")) {
                 col.style.setProperty("display", "none", "important");
+                tagIndex = idx;
                 colClasses.push("__tag");
                 return;
             }
             var text = (col.textContent || "").trim().toLowerCase();
             if (text === "tag") {
+                col.classList.add("tag-col");
                 col.style.setProperty("display", "none", "important");
+                tagIndex = idx;
                 colClasses.push("__tag");
                 return;
             }
@@ -77,8 +82,14 @@ function tt_style_columns(page) {
     // Pass 2: Apply same class-by-index to data rows
     page.querySelectorAll(".list-row-container .list-row").forEach(function(row) {
         var ci = 0;
-        Array.from(row.querySelectorAll(".list-row-col")).forEach(function(col) {
+        Array.from(row.querySelectorAll(".list-row-col")).forEach(function(col, idx) {
             if (col.classList.contains("list-subject")) return;
+            if (tagIndex >= 0 && idx === tagIndex) {
+                col.classList.add("tag-col");
+                col.style.setProperty("display", "none", "important");
+                ci++;
+                return;
+            }
             col.style.cssText = "";
             TT_ALL_CLS.forEach(function(c) { col.classList.remove(c); });
             var cls = ci < colClasses.length ? colClasses[ci] : null;
@@ -94,57 +105,23 @@ function tt_style_columns(page) {
     });
 }
 
-function injectTTCSS() {
-    var existing = document.getElementById("tt-list-css");
-    if (existing) existing.remove();
-    var el = document.createElement("style");
-    el.id = "tt-list-css";
-    el.textContent = '\
-#page-List\\/Trips\\/List .list-subject {\
-    flex:0 0 340px !important; min-width:340px !important; max-width:340px !important;\
-    overflow:hidden !important; display:flex !important; align-items:center !important;\
-}\
-#page-List\\/Trips\\/List .list-header-subject .list-header-meta { display:none !important; }\
-\
-#page-List\\/Trips\\/List .list-row-head .level-left,\
-#page-List\\/Trips\\/List .list-row-container .list-row .level-left {\
-    flex:0 0 auto !important; min-width:0 !important; max-width:none !important; overflow:visible !important;\
-}\
-#page-List\\/Trips\\/List .list-row-head .level-right,\
-#page-List\\/Trips\\/List .list-row-container .list-row .level-right {\
-    flex:0 0 0px !important; min-width:0px !important; max-width:0px !important; overflow:hidden !important; display:none !important;\
-}\
-\
-#page-List\\/Trips\\/List .list-row-col { margin-right:0 !important; }\
-#page-List\\/Trips\\/List .tag-col { display:none !important; }\
-\
-#page-List\\/Trips\\/List .list-row-head,\
-#page-List\\/Trips\\/List .list-row-container .list-row {\
-    min-width:' + TT_ROW_MIN + ' !important; flex-wrap:nowrap !important; display:flex !important;\
-}\
-\
-#page-List\\/Trips\\/List .layout-main-section { overflow:visible !important; }\
-#page-List\\/Trips\\/List .frappe-list,\
-#page-List\\/Trips\\/List .layout-main-section-wrapper { overflow:visible !important; }\
-#page-List\\/Trips\\/List .result {\
-    overflow-x:auto !important; -webkit-overflow-scrolling:touch;\
-}\
-\
-#page-List\\/Trips\\/List .list-row-col.hidden-xs,\
-#page-List\\/Trips\\/List .list-row-col.hidden-sm,\
-#page-List\\/Trips\\/List .list-row-col.hidden-md,\
-#page-List\\/Trips\\/List .list-row-head .list-row-col.hidden-xs,\
-#page-List\\/Trips\\/List .list-row-head .list-row-col.hidden-sm,\
-#page-List\\/Trips\\/List .list-row-head .list-row-col.hidden-md {\
-    display:flex !important;\
-}\
-';
-    document.head.appendChild(el);
+function tt_get_scope_root(listview) {
+    return (
+        document.getElementById("page-List/Trips/List") ||
+        (listview && listview.page && listview.page.wrapper && listview.page.wrapper[0]) ||
+        document.querySelector(".layout-main-section-wrapper")
+    );
 }
 
-function removeTTCSS() {
-    var x = document.getElementById("tt-list-css");
-    if (x) x.remove();
+function tt_mark_scope(listview) {
+    var root = tt_get_scope_root(listview);
+    if (!root) return null;
+    root.classList.add(TT_SCOPE_CLASS);
+    var page = root.closest(".page-body") || root.closest(".layout-main-section-wrapper") || root;
+    if (page && page.classList) {
+        page.classList.add(TT_SCOPE_CLASS);
+    }
+    return root;
 }
 
 frappe.listview_settings['Trips'] = {
@@ -176,15 +153,17 @@ frappe.listview_settings['Trips'] = {
   onload(listview) {
     ensure_tt_summary_box(listview);
     ensure_tt_filter_cleanup(listview);
+    ensure_tt_list_observer(listview);
 
-    injectTTCSS();
+    tt_mark_scope(listview);
 
     if (!listview.__tt_route_handler) {
       listview.__tt_route_handler = true;
       frappe.router.on("change", function() {
         var route = frappe.get_route();
-        if (route && route[0] === "List" && route[1] === "Trips") injectTTCSS();
-        else removeTTCSS();
+        if (route && route[0] === "List" && route[1] === "Trips") {
+          tt_mark_scope(listview);
+        }
       });
     }
 
@@ -197,7 +176,7 @@ frappe.listview_settings['Trips'] = {
   },
 
   refresh(listview) {
-    var page = document.getElementById("page-List/Trips/List") || (listview.page.wrapper && listview.page.wrapper[0]);
+    var page = tt_mark_scope(listview) || (listview.page.wrapper && listview.page.wrapper[0]);
 
     setTimeout(function() {
       ensure_tt_summary_box(listview);
@@ -258,6 +237,29 @@ function ensure_tt_filter_cleanup(listview) {
   });
 
   listview.__tt_filter_observer = observer;
+}
+
+function ensure_tt_list_observer(listview) {
+  if (listview.__tt_list_observer_bound) {
+    return;
+  }
+
+  listview.__tt_list_observer_bound = true;
+  const wrapper = listview.page.wrapper[0];
+  const observer = new MutationObserver(function() {
+    const page = tt_mark_scope(listview);
+    tt_style_columns(page);
+    if (listview.__tt_hide_driver_col) {
+      apply_tt_hide_driver_column(listview);
+    }
+  });
+
+  observer.observe(wrapper, {
+    childList: true,
+    subtree: true
+  });
+
+  listview.__tt_list_observer = observer;
 }
 
 function apply_tt_filter_cleanup(listview) {

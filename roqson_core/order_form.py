@@ -1,6 +1,127 @@
 import frappe
 
 
+SYNCABLE_SALES_STATUSES = {"Pending"}
+
+
+def _get_linked_sales_doc(order_doc):
+    sales_name = order_doc.get("sales_ref")
+    if sales_name and frappe.db.exists("Sales", sales_name):
+        return frappe.get_doc("Sales", sales_name)
+
+    sales_name = frappe.db.get_value("Sales", {"order_ref": order_doc.name}, "name")
+    if sales_name:
+        if not order_doc.get("sales_ref"):
+            frappe.db.set_value("Order Form", order_doc.name, "sales_ref", sales_name, update_modified=False)
+        return frappe.get_doc("Sales", sales_name)
+
+    return None
+
+
+def _build_sales_items(order_doc, existing_sales=None):
+    existing_flags = {}
+    existing_rows = []
+
+    if existing_sales:
+        for idx, row in enumerate(existing_sales.get("items") or []):
+            key = (
+                row.get("item") or "",
+                row.get("warehouse") or "",
+                frappe.utils.flt(row.get("unit_price")),
+                row.get("unit") or "",
+                cint(row.get("is_promo") or 0),
+            )
+            existing_flags.setdefault(key, []).append(cint(row.get("is_unreserved") or 0))
+            existing_rows.append(cint(row.get("is_unreserved") or 0))
+
+    source_rows = order_doc.get("table_mkaq") or []
+    items = []
+    for idx, row in enumerate(source_rows):
+        item_code = row.get("items")
+        if not item_code:
+            continue
+
+        key = (
+            item_code,
+            row.get("warehouse") or "",
+            frappe.utils.flt(row.get("price")),
+            row.get("unit") or "",
+            cint(row.get("is_promo_reward") or 0),
+        )
+        preserved_flags = existing_flags.get(key) or []
+        is_unreserved = preserved_flags.pop(0) if preserved_flags else (
+            existing_rows[idx] if idx < len(existing_rows) else 0
+        )
+
+        items.append({
+            "doctype": "Sales Items Table",
+            "item": item_code,
+            "qty": row.get("qty") or 0,
+            "unit": row.get("unit") or "",
+            "unit_price": row.get("price") or 0,
+            "total": row.get("total_price") or 0,
+            "warehouse": row.get("warehouse") or "",
+            "is_promo": row.get("is_promo_reward") or 0,
+            "is_unreserved": is_unreserved,
+        })
+
+    return items
+
+
+def sync_sales_from_order(order_doc, *, create_if_missing=True):
+    sales_doc = _get_linked_sales_doc(order_doc)
+    previous_total = None
+
+    if sales_doc:
+        if sales_doc.get("status") not in SYNCABLE_SALES_STATUSES:
+            return sales_doc
+        previous_total = frappe.utils.flt(sales_doc.get("grand_total"))
+
+    sales_total = frappe.utils.flt(order_doc.get("grand_total"))
+    payload = {
+        "status": "Pending",
+        "fulfillment_type": order_doc.get("fulfillment_type") or "Delivery",
+        "order_ref": order_doc.name,
+        "customer_link": order_doc.get("outlet") or "",
+        "customer_name": order_doc.get("name_of_outlet") or order_doc.get("outlet") or "",
+        "address": order_doc.get("address") or "",
+        "contact_number": order_doc.get("contact_number") or "",
+        "grand_total": sales_total,
+        "items": _build_sales_items(order_doc, existing_sales=sales_doc),
+    }
+
+    if sales_doc:
+        for fieldname, value in payload.items():
+            if fieldname == "items":
+                sales_doc.set("items", value)
+            else:
+                sales_doc.set(fieldname, value)
+
+        if frappe.utils.flt(sales_doc.get("outstanding_balance")) == previous_total:
+            sales_doc.outstanding_balance = sales_total
+
+        sales_doc.save(ignore_permissions=True)
+    elif create_if_missing:
+        sales_doc = frappe.get_doc({
+            "doctype": "Sales",
+            **payload,
+            "outstanding_balance": sales_total,
+            "creation_date": frappe.utils.nowdate(),
+        })
+        sales_doc.insert(ignore_permissions=True)
+    else:
+        return None
+
+    if sales_doc and order_doc.get("sales_ref") != sales_doc.name:
+        frappe.db.set_value("Order Form", order_doc.name, "sales_ref", sales_doc.name, update_modified=False)
+
+    return sales_doc
+
+
+def cint(value):
+    return frappe.utils.cint(value)
+
+
 def before_delete(doc, method):
     # Ported from Server Script: "Auto-close PCRs on Order Delete (DocType Event)"
     pending = frappe.get_all("Price Change Request",
@@ -204,41 +325,10 @@ def after_save(doc, method):
                 "docstatus": 1,
                 "approved_by": user_name
             }, update_modified=False)
-
-            existing = frappe.get_all("Sales", filters={"order_ref": doc.name}, limit=1)
-            if existing:
-                if not doc.get("sales_ref"):
-                    frappe.db.set_value("Order Form", doc.name, "sales_ref",
-                                        existing[0].name, update_modified=False)
-            else:
-                items = [
-                    {
-                        "doctype": "Sales Items Table",
-                        "item": row.get("items"),
-                        "qty": row.get("qty") or 0,
-                        "unit": row.get("unit") or "",
-                        "unit_price": row.get("price") or 0,
-                        "total": row.get("total_price") or 0,
-                        "warehouse": row.get("warehouse") or "",
-                        "is_promo": row.get("is_promo_reward") or 0,
-                    }
-                    for row in (doc.get("table_mkaq") or []) if row.get("items")
-                ]
-                sales = frappe.get_doc({
-                    "doctype": "Sales",
-                    "status": "Pending",
-                    "fulfillment_type": doc.get("fulfillment_type") or "Delivery",
-                    "order_ref": doc.name,
-                    "customer_link": doc.get("outlet") or "",
-                    "customer_name": doc.get("name_of_outlet") or doc.get("outlet") or "",
-                    "address": doc.get("address") or "",
-                    "contact_number": doc.get("contact_number") or "",
-                    "grand_total": doc.get("grand_total") or 0,
-                    "creation_date": frappe.utils.nowdate(),
-                    "items": items,
-                })
-                sales.insert(ignore_permissions=True)
-                frappe.db.set_value("Order Form", doc.name, "sales_ref", sales.name, update_modified=False)
+            doc.workflow_state = "Approved"
+            doc.docstatus = 1
+            doc.approved_by = user_name
+            sync_sales_from_order(doc)
 
     # --- Price Change Request Creator ---
     if doc.apply_promo:
@@ -305,47 +395,9 @@ def on_update_after_submit(doc, method):
     old_wf = (old_doc.workflow_state or "") if old_doc else ""
     new_wf = doc.get("workflow_state") or ""
 
-    # --- Auto Create Sales on Approval ---
-    is_approved = new_wf == "Approved" and old_wf != "Approved"
-    is_legacy_reserved = new_wf == "Reserved" and old_wf != "Reserved"
-    if is_approved or is_legacy_reserved:
-        existing = frappe.get_all("Sales", filters={"order_ref": doc.name}, limit=1)
-        if existing:
-            if not doc.get("sales_ref"):
-                frappe.db.set_value("Order Form", doc.name, "sales_ref",
-                                    existing[0].name, update_modified=False)
-        else:
-            source_rows = doc.get("table_mkaq") or doc.get("table_aaaa") or []
-            items = [
-                {
-                    "doctype": "Sales Items Table",
-                    "item": row.get("items"),
-                    "qty": row.get("qty") or 0,
-                    "unit": row.get("unit") or "",
-                    "unit_price": row.get("price") or 0,
-                    "total": row.get("total_price") or 0,
-                    "warehouse": row.get("warehouse") or "",
-                    "is_promo": row.get("is_promo_reward") or 0,
-                }
-                for row in source_rows if row.get("items")
-            ]
-            sales_total = doc.grand_total or 0
-            sales = frappe.get_doc({
-                "doctype": "Sales",
-                "status": "Pending",
-                "fulfillment_type": doc.get("fulfillment_type") or "Delivery",
-                "order_ref": doc.name,
-                "customer_link": doc.outlet or "",
-                "customer_name": doc.name_of_outlet or doc.outlet or "",
-                "address": doc.address or "",
-                "contact_number": doc.contact_number or "",
-                "grand_total": sales_total,
-                "outstanding_balance": sales_total,
-                "creation_date": frappe.utils.nowdate(),
-                "items": items,
-            })
-            sales.insert(ignore_permissions=True)
-            frappe.db.set_value("Order Form", doc.name, "sales_ref", sales.name, update_modified=False)
+    # --- Order / Sales Synchronization ---
+    if new_wf in {"Approved", "Reserved"}:
+        sync_sales_from_order(doc)
 
     # --- State Transition Notification ---
     state = new_wf

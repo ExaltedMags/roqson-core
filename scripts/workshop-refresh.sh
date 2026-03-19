@@ -19,13 +19,18 @@ case "$MODE" in
     bench --site "$SITE" execute roqson_core.dev.local_setup.sync_local_shell
     bench --site "$SITE" clear-cache
     ;;
+  gui|metadata)
+    bench --site "$SITE" export-fixtures --app roqson_core
+    bench --site "$SITE" execute roqson_core.dev.local_setup.sync_local_shell
+    bench --site "$SITE" clear-cache
+    ;;
   all)
     bench build --app roqson_core
     bench --site "$SITE" execute roqson_core.dev.local_setup.sync_local_shell
     bench --site "$SITE" clear-cache
     ;;
   *)
-    echo "Usage: $0 [python|js|css|assets|workspace|fixtures|all]" >&2
+    echo "Usage: $0 [python|js|css|assets|workspace|fixtures|gui|metadata|all]" >&2
     exit 1
     ;;
 esac

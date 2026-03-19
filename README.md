@@ -9,12 +9,27 @@ This repo is now the main source of truth for the app’s custom logic, frontend
 Use this order:
 
 1. make changes locally
-2. run `roqson refresh`
+2. run the right refresh command
 3. refresh localhost
 4. verify the change
 5. commit and push
 6. validate in staging
 7. move to production only after approval
+
+## Which Command To Use
+
+| If you changed... | Use this command | Why |
+|---|---|---|
+| Python, JS, CSS, or repo-owned JSON files | `roqson refresh` | Rebuilds/syncs local app state from the repo |
+| GUI metadata like adding fields or changing field/form settings in Frappe | `roqson refresh gui` | Exports eligible GUI metadata into fixtures, syncs local, and clears cache |
+| Only Python/server-side behavior and no assets | `roqson refresh python` | Fast cache clear for Python-focused work |
+| Only JS/CSS/assets | `roqson refresh assets` | Rebuilds frontend assets and clears cache |
+| Workspace or fixture sync only | `roqson refresh workspace` | Replays repo-owned local setup without asset build |
+
+Simple rule:
+
+- `roqson refresh` for file/code changes
+- `roqson refresh gui` for GUI changes
 
 ## Local Development Setup
 
@@ -165,6 +180,14 @@ roqson refresh
 6. refresh localhost
 7. if correct, commit and push
 
+If you changed metadata through the GUI instead of editing repo files, run:
+
+```bash
+roqson refresh gui
+```
+
+Then review the fixture changes in git, refresh localhost, and commit if correct.
+
 ## What `roqson refresh` Does
 
 It runs the local update steps needed to make changes reflect reliably:
@@ -174,6 +197,29 @@ It runs the local update steps needed to make changes reflect reliably:
 - clear cache
 
 Use it as the default command during development and workshops.
+
+## What `roqson refresh gui` Does
+
+It is the GUI-safe companion command for metadata changes made inside Frappe.
+
+It will:
+
+- export eligible GUI changes into the app's fixture files
+- sync repo-owned local metadata
+- clear cache
+
+Use it after changes like:
+
+- adding a custom field
+- changing field label / required / hidden / read-only settings
+- changing form metadata through Customize Form
+
+Important:
+
+- GUI changes are only portable through git if they are exported into fixture files
+- `roqson refresh gui` helps make those changes visible to git
+- after running it, always check `git diff` to confirm the expected fixture files changed
+- some uncommon GUI changes may still be stored in metadata types outside the current fixture config, so `git diff` remains the safety check
 
 ## If You Want To Use An AI Assistant To Set It Up
 

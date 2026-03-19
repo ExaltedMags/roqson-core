@@ -175,67 +175,11 @@ frappe.listview_settings.Sales = {
             }
         }, 200);
 
-        function injectCSS() {
-            var existing = document.getElementById('sl-list-css');
-            if (existing) existing.remove();
-            var el = document.createElement('style');
-            el.id = 'sl-list-css';
-            el.textContent = '\
-#page-List\\/Sales\\/List .list-row-activity .comment-count,\
-#page-List\\/Sales\\/List .list-row-activity .mx-2,\
-#page-List\\/Sales\\/List .list-row-activity .list-row-like { display:none !important; }\
-#page-List\\/Sales\\/List .list-header-meta .list-liked-by-me { display:none !important; }\
-#page-List\\/Sales\\/List .list-subject {\
-    flex:0 0 200px !important; min-width:200px !important; max-width:200px !important;\
-    overflow:hidden !important; display:flex !important; align-items:center !important;\
-}\
-#page-List\\/Sales\\/List .list-header-subject .list-header-meta { display:none !important; }\
-#page-List\\/Sales\\/List .list-row-head .level-left,\
-#page-List\\/Sales\\/List .list-row-container .list-row .level-left {\
-    flex:0 0 auto !important; min-width:0 !important; max-width:none !important; overflow:visible !important;\
-}\
-#page-List\\/Sales\\/List .list-row-head .level-right,\
-#page-List\\/Sales\\/List .list-row-container .list-row .level-right {\
-    flex:0 0 0px !important; min-width:0px !important; max-width:0px !important; overflow:hidden !important; display:none !important;\
-}\
-#page-List\\/Sales\\/List .list-row-col { margin-right:0 !important; }\
-#page-List\\/Sales\\/List .tag-col { display:none !important; }\
-#page-List\\/Sales\\/List .list-row-head,\
-#page-List\\/Sales\\/List .list-row-container .list-row {\
-    min-width:1630px !important; flex-wrap:nowrap !important; display:flex !important;\
-}\
-#page-List\\/Sales\\/List .layout-main-section { overflow:visible !important; }\
-#page-List\\/Sales\\/List .frappe-list,\
-#page-List\\/Sales\\/List .layout-main-section-wrapper { overflow:visible !important; }\
-#page-List\\/Sales\\/List .result {\
-    overflow-x:auto !important; -webkit-overflow-scrolling:touch;\
-}\
-#page-List\\/Sales\\/List .list-row-col.hidden-xs,\
-#page-List\\/Sales\\/List .list-row-col.hidden-sm,\
-#page-List\\/Sales\\/List .list-row-col.hidden-md,\
-#page-List\\/Sales\\/List .list-row-head .list-row-col.hidden-xs,\
-#page-List\\/Sales\\/List .list-row-head .list-row-col.hidden-sm,\
-#page-List\\/Sales\\/List .list-row-head .list-row-col.hidden-md {\
-    display:flex !important;\
-}\
-.row-locked { opacity:0.5; background-color:#f9f9f9 !important; pointer-events:none; }\
-';
-            document.head.appendChild(el);
-        }
-
-        function removeCSS() {
-            var x = document.getElementById('sl-list-css');
-            if (x) x.remove();
-        }
-
-        injectCSS();
-
         if (!listview.__sl_route_handler) {
             listview.__sl_route_handler = true;
             frappe.router.on('change', function () {
                 var route = frappe.get_route();
-                if (route && route[0] === 'List' && route[1] === 'Sales') injectCSS();
-                else removeCSS();
+                if (route && route[0] === 'List' && route[1] === 'Sales') return;
             });
         }
 
