@@ -235,6 +235,8 @@ Context:
 - Preferred local site name: roqson.local
 - If MariaDB port 3306 is occupied, use 3307 instead
 - Enable developer mode and local auto-login for localhost
+- The repo path may differ on this machine, so detect it from the current workspace or ask only if truly necessary
+- Do not assume the repo contains full business seed data such as the exact production Company record
 
 What I need you to do:
 1. check for missing dependencies
@@ -248,14 +250,31 @@ What I need you to do:
    - developer_mode = 1
    - local_dev_auto_login = 1
    - local_dev_landing_page = /app/home
-9. verify the local site runs
-10. install the `roqson` helper command from this repo
+9. confirm the app hooks are present and active:
+   - roqson_core.local_auth.auto_login_administrator in before_request
+   - roqson_core.local_auth.redirect_local_dev_to_app in after_request
+10. verify the local site runs
+11. tell me the exact localhost URL to open first
+12. install the `roqson` helper command from this repo
+13. if setup wizard or onboarding appears because core site data is missing, do not invent or silently create substitute business records and call it parity; instead:
+   - explain exactly what data is missing
+   - tell me whether the repo actually contains that data
+   - prefer restoring the existing site backup if I want the exact ROQSON company and realistic data
+   - only create placeholder bootstrap records if I explicitly approve that tradeoff
+
+Important implementation detail:
+- In this repo, local auto-login only triggers on local requests that are not under /app
+- So the first URL to open should usually be http://127.0.0.1:8000/ or http://127.0.0.1:8000/login
+- That first request should establish the Administrator session and then redirect to /app/home
+- A fresh install can be useful for code iteration, but it is not proof that the repo contains the exact staging/master data
 
 Rules:
 - prefer safe, non-destructive commands
 - explain any blocker clearly before changing course
 - if database port conflicts exist, resolve them pragmatically
 - assume this machine is for development only
+- do not assume a hardcoded filesystem path
+- do not create a new Company, Chart of Accounts, or other business master data as a silent substitute for the existing ROQSON setup
 ```
 
 ## Notes

@@ -107,6 +107,13 @@ Therefore localhost can be useful immediately for:
 
 But localhost will not perfectly match staging unless site state is also restored or mirrored.
 
+Important:
+
+- the repo does not guarantee full business master data or exact staging records
+- a fresh install may still be missing the real `Company` record and other site data
+- if the user expects the exact existing ROQSON company and realistic business state, a staging backup restore is required
+- the agent must not silently create substitute Company/master-data records and present them as equivalent to the existing site
+
 ## Recommended Execution Order For The Agent
 
 Follow this exact order.
@@ -136,6 +143,7 @@ Use this rule:
 
 - If the user only needs fast CSS/Python iteration, Path A is acceptable.
 - If the user needs realistic DocType behavior/data/workflows, prefer Path B.
+- If the user expects the exact existing ROQSON company or production-like master data, Path B is required.
 
 ### Phase 3: Build The Bench
 
@@ -161,7 +169,17 @@ bench new-site roqson.local
 bench --site roqson.local install-app erpnext
 bench --site roqson.local install-app roqson_core
 bench --site roqson.local set-config developer_mode 1
+bench --site roqson.local set-config local_dev_auto_login 1
+bench --site roqson.local set-config local_dev_landing_page /app/home
 ```
+
+Important constraints for Path A:
+
+- Path A is a clean local bootstrap, not a staging clone
+- if ERPNext setup wizard appears because no Company exists, that does not mean the repo is broken
+- it means site data is missing from the blank install
+- the agent must explain this clearly
+- the agent must not invent a new ROQSON company unless the user explicitly agrees to a temporary placeholder bootstrap
 
 ### Phase 5: Run Localhost
 
@@ -269,6 +287,7 @@ The agent should also clearly explain:
 - localhost will not automatically include site-specific DB scripts
 - fixtures alone may not fully recreate staging behavior
 - backups are needed for realistic data/state
+- backups are needed for the exact existing Company and business master data
 - remote `roqson.py` workflows may still be necessary for DB-resident scripts
 
 ## Repo-Specific Notes
@@ -332,6 +351,9 @@ The agent should use these rules:
 - If the user has no backup files, proceed with a fresh local site rather than blocking entirely.
 - If local validation is sufficient for the user’s immediate task, do not force a backup restore.
 - If the task concerns remote Client Scripts or Server Scripts, remind the user that localhost may not reflect DB-resident behavior unless those scripts are mirrored or migrated.
+- If the user expects exact business data parity, do not claim a fresh site is equivalent to staging.
+- If setup wizard persists because there is no Company on a blank site, explain that this is missing site data, not proof that the repo contains the exact Company record.
+- Do not create a new Company or other business master data silently; ask the user whether they want a temporary bootstrap record or a proper backup restore.
 
 ## Failure Modes The Agent Should Be Ready For
 
