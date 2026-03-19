@@ -28,7 +28,7 @@ Target result:
 Current expected local repo path:
 
 ```text
-/Users/kodimagadia/Documents/ROQSON-Agentic-Dev/roqson_core
+/absolute/path/to/roqson_core
 ```
 
 ## Core Rule For The Agent
@@ -157,7 +157,7 @@ cd ~/frappe-dev
 bench init frappe-bench --frappe-branch version-15
 cd frappe-bench
 bench get-app erpnext --branch version-15
-bench get-app roqson_core file:///Users/kodimagadia/Documents/ROQSON-Agentic-Dev/roqson_core
+bench get-app roqson_core file:///absolute/path/to/roqson_core
 ```
 
 ### Phase 4: Create The Local Site
@@ -294,12 +294,12 @@ The agent should also clearly explain:
 
 Relevant files in this repo include:
 
-- [roqson_core/hooks.py](/Users/kodimagadia/Documents/ROQSON-Agentic-Dev/roqson_core/roqson_core/hooks.py)
-- [roqson_core/public/css/roqson_core.css](/Users/kodimagadia/Documents/ROQSON-Agentic-Dev/roqson_core/roqson_core/public/css/roqson_core.css)
-- [roqson.py](/Users/kodimagadia/Documents/ROQSON-Agentic-Dev/roqson_core/roqson.py)
-- [pyproject.toml](/Users/kodimagadia/Documents/ROQSON-Agentic-Dev/roqson_core/pyproject.toml)
-- [requirements.txt](/Users/kodimagadia/Documents/ROQSON-Agentic-Dev/roqson_core/requirements.txt)
-- [setup.py](/Users/kodimagadia/Documents/ROQSON-Agentic-Dev/roqson_core/setup.py)
+- `roqson_core/hooks.py`
+- `roqson_core/public/css/roqson_core.css`
+- `roqson.py`
+- `pyproject.toml`
+- `requirements.txt`
+- `setup.py`
 
 The app package is under:
 
@@ -320,13 +320,13 @@ These prompts are meant for tools like Gemini CLI, Claude Code, Codex CLI, Curso
 ### Prompt: audit only
 
 ```text
-Audit this machine for local Frappe v15 + ERPNext development for the repo at /Users/kodimagadia/Documents/ROQSON-Agentic-Dev/roqson_core. Check Python, Node, yarn/npm, MariaDB/MySQL, Redis, and bench. Do not install anything yet. Tell me exactly what is missing and which items require my manual intervention.
+Audit this machine for local Frappe v15 + ERPNext development for the repo at /absolute/path/to/roqson_core. Check Python, Node, yarn/npm, MariaDB/MySQL, Redis, and bench. Do not install anything yet. Tell me exactly what is missing and which items require my manual intervention.
 ```
 
 ### Prompt: full localhost setup
 
 ```text
-Set up a local Frappe v15 + ERPNext bench for the repo at /Users/kodimagadia/Documents/ROQSON-Agentic-Dev/roqson_core. Install roqson_core from the local path, create a local site, install erpnext and roqson_core, and get it running on localhost. Only stop when you need a password, OS-level install, backup file, or browser verification from me.
+Set up a local Frappe v15 + ERPNext bench for the repo at /absolute/path/to/roqson_core. Install roqson_core from the local path, create a local site, install erpnext and roqson_core, and get it running on localhost. Only stop when you need a password, OS-level install, backup file, or browser verification from me.
 ```
 
 ### Prompt: restore backup locally

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-BENCH_PATH="${ROQSON_BENCH_PATH:-/Users/kodimagadia/frappe-dev/frappe-bench}"
+BENCH_PATH="${ROQSON_BENCH_PATH:-$HOME/frappe-dev/frappe-bench}"
 SITE_NAME="${ROQSON_SITE_NAME:-roqson.local}"
 
 if [[ ! -d "$BENCH_PATH" ]]; then

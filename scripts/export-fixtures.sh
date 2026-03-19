@@ -1,7 +1,7 @@
 #!/bin/zsh
 set -euo pipefail
 
-BENCH_DIR="${BENCH_DIR:-/Users/kodimagadia/frappe-dev/frappe-bench}"
+BENCH_DIR="${BENCH_DIR:-$HOME/frappe-dev/frappe-bench}"
 SITE="${SITE:-roqson.local}"
 APP="${APP:-roqson_core}"
 
